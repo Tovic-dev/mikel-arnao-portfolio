@@ -23,9 +23,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
-  async redirects() {
-    return [{ source: "/work", destination: "/#work", permanent: true }];
-  },
   turbopack: {
     rules: {
       "*.css": {

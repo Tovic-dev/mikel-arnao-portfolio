@@ -21,7 +21,7 @@ export function Header() {
         <nav aria-label="Main">
           <ul className="flex items-center gap-6 sm:gap-8">
             <li>
-              <NavLink href="/#work" match="/work">
+              <NavLink href="/work" match="/work">
                 Work
               </NavLink>
             </li>

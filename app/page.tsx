@@ -3,7 +3,7 @@ import { Hero } from "@/components/home/Hero";
 import { ProcessGrid } from "@/components/home/ProcessGrid";
 import { WorkList } from "@/components/home/WorkList";
 import type { Metadata } from "next";
-import { getProjects } from "@/content";
+import { getFeatured } from "@/content";
 import { site, siteUrl } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ const person = {
 
 // Homepage (05 A): curtain hero → process grid → work → approach → about → footer.
 export default function HomePage() {
-  const projects = getProjects();
+  const projects = getFeatured();
   const tiles = projects.flatMap((p) => p.processTiles);
 
   return (

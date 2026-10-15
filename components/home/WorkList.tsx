@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Project } from "@/content/types";
 import { ProjectCard } from "./ProjectCard";
 
@@ -20,6 +22,19 @@ export function WorkList({ projects }: { projects: Project[] }) {
             </li>
           ))}
         </ol>
+        <div className="mt-24 border-t border-rule-strong pt-6 lg:mt-32">
+          <Link
+            href="/work"
+            className="group inline-flex min-h-12 items-center gap-2 border border-ink px-5 label transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
+          >
+            See all projects
+            <ArrowRight
+              aria-hidden="true"
+              className="size-4 transition-transform duration-(--dur-base) ease-standard group-hover:translate-x-1"
+              strokeWidth={1.5}
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );

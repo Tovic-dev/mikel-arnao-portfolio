@@ -1,10 +1,11 @@
-import type { Project } from "../types";
+import type { CaseStudy } from "../types";
 import { placeholders } from "./_placeholders";
 
 const img = placeholders.orbea;
 
 // DRAFT copy from "Memoria_Hito3_PBL03_05" (EN abstract). Facts: 09 §3.4. To be checked at Checkpoint B.
-export const orbeaCycleDry: Project = {
+export const orbeaCycleDry: CaseStudy = {
+  kind: "case-study",
   slug: "orbea-cycle-dry",
   order: 4,
   title: "Orbea Cycle Dry",
@@ -25,7 +26,10 @@ export const orbeaCycleDry: Project = {
     "Led the final renders",
   ],
   tools: ["SolidWorks", "KeyShot", "Blender"],
-  disciplines: ["product-design", "engineering", "cad"],
+  fields: ["product-design", "engineering"],
+  context: "company",
+  company: "Orbea",
+  featured: true,
   hero: img.hero,
   cardImage: img.card,
   processTiles: [img.sketch, img.cad, img.render],

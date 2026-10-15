@@ -1,10 +1,11 @@
-import type { Project } from "../types";
+import type { CaseStudy } from "../types";
 import { placeholders } from "./_placeholders";
 
 const img = placeholders.seat;
 
 // DRAFT copy from "MEMORIA_PBL04" (EN abstract). Facts: 09 §3.2. To be checked at Checkpoint B.
-export const seatAtecaMirror: Project = {
+export const seatAtecaMirror: CaseStudy = {
+  kind: "case-study",
   slug: "seat-ateca-mirror",
   order: 2,
   title: "SEAT Ateca side mirror",
@@ -24,7 +25,10 @@ export const seatAtecaMirror: Project = {
     "Led the final renders",
   ],
   tools: ["SolidWorks", "Siemens NX", "KeyShot", "Blender"],
-  disciplines: ["product-design", "engineering", "cad"],
+  fields: ["product-design", "engineering"],
+  context: "company",
+  company: "Maier",
+  featured: true,
   hero: img.hero,
   cardImage: img.card,
   processTiles: [img.sketch, img.cad, img.render],

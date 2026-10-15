@@ -1,10 +1,11 @@
-import type { Project } from "../types";
+import type { CaseStudy } from "../types";
 import { placeholders } from "./_placeholders";
 
 const img = placeholders.ardura;
 
 // DRAFT copy from "PBL05 Group06 Final Report" (EN). Facts: 09 §3.1. To be checked at Checkpoint B.
-export const ardura: Project = {
+export const ardura: CaseStudy = {
+  kind: "case-study",
   slug: "ardura",
   order: 1,
   title: "Ardura",
@@ -18,7 +19,9 @@ export const ardura: Project = {
   team: ["Danel Iturbe", "Egoitz Fernandez", "Mikel Martin", "Maria Martinez"],
   myRole: ["Led the development phase, including CAD", "Led the final renders"],
   tools: ["SolidWorks", "KeyShot", "Blender"],
-  disciplines: ["product-design", "cad", "sustainability"],
+  fields: ["product-design", "engineering", "sustainability"],
+  context: "academic",
+  featured: true,
   hero: img.hero,
   cardImage: img.card,
   processTiles: [img.sketch, img.cad, img.render],

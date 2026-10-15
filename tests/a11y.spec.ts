@@ -4,7 +4,9 @@ import { expect, test } from "@playwright/test";
 // Every route, with motion on and with reduced motion (11 §2: 0 axe violations).
 const routes = [
   "/",
+  "/work",
   "/about",
+  "/work/bira",
   "/work/ardura",
   "/work/seat-ateca-mirror",
   "/work/mercedes-vent-lca",

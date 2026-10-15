@@ -3,13 +3,35 @@ import type { StaticImageData } from "next/image";
 // Content model — docs/portfolio/05-page-specifications.md §B5.
 // Required fields are required here, so a missing hero, alt text or role fails the build.
 
-export type Discipline =
+/** Filterable fields on the Work page (05 Part D3). */
+export type Field =
   | "product-design"
-  | "cad"
   | "engineering"
   | "sustainability"
   | "research"
+  | "brand"
   | "ux";
+
+export const fieldLabels: Record<Field, string> = {
+  "product-design": "Product design",
+  engineering: "Engineering & CAD",
+  sustainability: "Sustainability",
+  research: "Research",
+  brand: "Brand & graphic",
+  ux: "UX/UI",
+};
+
+/** Short labels for dense rows and cards. */
+export const fieldShortLabels: Record<Field, string> = {
+  "product-design": "Product",
+  engineering: "Engineering",
+  sustainability: "Sustainability",
+  research: "Research",
+  brand: "Brand",
+  ux: "UX/UI",
+};
+
+export type ProjectContext = "company" | "academic" | "competition";
 
 /** Who made the figure, shown in the caption. "team" or a teammate's name. */
 export type Credit = "mikel" | "team" | (string & {});
@@ -98,8 +120,9 @@ export interface Section {
   media?: Media[];
 }
 
-export interface Project {
+interface ProjectBase {
   slug: string;
+  /** Stable index number on the Work page (01–04 = flagships). */
   order: number;
   title: string;
   productName?: string;
@@ -112,16 +135,35 @@ export interface Project {
   institution: string;
   /** Exact approved wording only (decision log D-13). */
   collaboration?: string;
+  context: ProjectContext;
+  /** Short name for the Context column when context is "company". */
+  company?: string;
+  /** Flagships: shown on the homepage. */
+  featured: boolean;
   team: string[];
   myRole: [string, ...string[]];
   tools: string[];
-  disciplines: [Discipline, ...Discipline[]];
+  fields: [Field, ...Field[]];
   /** Only with evidence. */
   recognition?: string;
   hero: ImageAsset;
   cardImage: ImageAsset;
+  status: "draft" | "published";
+}
+
+export interface CaseStudy extends ProjectBase {
+  kind: "case-study";
   /** Three square tiles for the homepage process grid: sketch, CAD, render. */
   processTiles: [ImageAsset, ImageAsset, ImageAsset];
   sections: [Section, ...Section[]];
-  status: "draft" | "published";
 }
+
+/** Lighter project page (05 Part E). */
+export interface ShortEntry extends ProjectBase {
+  kind: "short";
+  /** "About the project": 2–3 short paragraphs. */
+  body: [string, ...string[]];
+  media?: Media[];
+}
+
+export type Project = CaseStudy | ShortEntry;

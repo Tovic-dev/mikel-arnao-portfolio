@@ -36,6 +36,15 @@ import seat_figure_wide from "../media/_placeholder/seat-figure-wide.jpg";
 import seat_hero from "../media/_placeholder/seat-hero.jpg";
 import seat_render from "../media/_placeholder/seat-render.jpg";
 import seat_sketch from "../media/_placeholder/seat-sketch.jpg";
+import bira_card from "../media/_placeholder/bira-card.jpg";
+import bira_figure from "../media/_placeholder/bira-figure.jpg";
+import bira_hero from "../media/_placeholder/bira-hero.jpg";
+import senda_card from "../media/_placeholder/senda-norte-card.jpg";
+import senda_figure from "../media/_placeholder/senda-norte-figure.jpg";
+import senda_hero from "../media/_placeholder/senda-norte-hero.jpg";
+import stroller_card from "../media/_placeholder/stroller-card.jpg";
+import stroller_figure from "../media/_placeholder/stroller-figure.jpg";
+import stroller_hero from "../media/_placeholder/stroller-hero.jpg";
 
 const ph = (src: ImageAsset["src"], alt: string): ImageAsset => ({
   src,
@@ -110,5 +119,39 @@ export const placeholders = {
     figure: orbea_figure,
     wide: orbea_figure_wide,
     portrait: orbea_figure_portrait,
+  }),
+};
+
+// Short entries (05 Part E).
+function shortSet(
+  name: string,
+  imgs: {
+    card: ImageAsset["src"];
+    hero: ImageAsset["src"];
+    figure: ImageAsset["src"];
+  },
+) {
+  return {
+    card: ph(imgs.card, `${name} main image`),
+    hero: ph(imgs.hero, `${name} hero image`),
+    figure: ph(imgs.figure, `${name} figure`),
+  };
+}
+
+export const shortPlaceholders = {
+  bira: shortSet("BIRA", {
+    card: bira_card,
+    hero: bira_hero,
+    figure: bira_figure,
+  }),
+  sendaNorte: shortSet("Senda Norte", {
+    card: senda_card,
+    hero: senda_hero,
+    figure: senda_figure,
+  }),
+  stroller: shortSet("Urban stroller research", {
+    card: stroller_card,
+    hero: stroller_hero,
+    figure: stroller_figure,
   }),
 };

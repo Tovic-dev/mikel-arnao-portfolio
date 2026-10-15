@@ -74,6 +74,12 @@ const files = [
     { name: `${p}-figure`, w: 1800, h: 1200, kind: "render" },
     { name: `${p}-figure-portrait`, w: 1200, h: 1500, kind: "sketch" },
   ]),
+  // Short entries (05 Part E)
+  ...["bira", "senda-norte", "stroller"].flatMap((p) => [
+    { name: `${p}-card`, w: 2100, h: 1400, kind: p === "stroller" ? "sketch" : "render" },
+    { name: `${p}-hero`, w: 2560, h: 1440, kind: p === "stroller" ? "photo" : "render" },
+    { name: `${p}-figure`, w: 1800, h: 1200, kind: p === "stroller" ? "chart" : "sketch" },
+  ]),
   { name: "portrait", w: 1200, h: 1500, kind: "portrait" },
 ];
 

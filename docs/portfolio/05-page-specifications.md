@@ -266,7 +266,7 @@ Layout: single reading column (cols 3–10 desktop) with mono labels in cols 1�
 
 ## Part D — Work page (`/work`) · layout A "Spec index"
 
-Status: **proposed** (2026-10-16), awaiting Mikel's approval. Decisions D-38, D-39, D-40.
+Status: **approved and built** (2026-10-16; D-38, D-39). Short entries are placeholders until Checkpoint B.
 
 ### D0. Purpose
 The complete, filterable record of Mikel's work. The homepage stays the curated highlight (four flagships); `/work` is the archive. The page is read like a parts list: every project is a numbered row with the same columns.

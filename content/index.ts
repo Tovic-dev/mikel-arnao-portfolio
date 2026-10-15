@@ -1,8 +1,11 @@
 import { ardura } from "./projects/ardura";
+import { bira } from "./projects/bira";
 import { mercedesVentLca } from "./projects/mercedes-vent-lca";
 import { orbeaCycleDry } from "./projects/orbea-cycle-dry";
 import { seatAtecaMirror } from "./projects/seat-ateca-mirror";
-import type { Project } from "./types";
+import { sendaNorte } from "./projects/senda-norte";
+import { strollerResearch } from "./projects/stroller-research";
+import type { CaseStudy, Project } from "./types";
 
 // One typed file per project in content/projects/.
 const projects: Project[] = [
@@ -10,8 +13,12 @@ const projects: Project[] = [
   seatAtecaMirror,
   mercedesVentLca,
   orbeaCycleDry,
+  bira,
+  sendaNorte,
+  strollerResearch,
 ];
 
+/** Every published project in Work-page order (05 Part D2). */
 export function getProjects(): Project[] {
   return projects
     .filter(
@@ -20,11 +27,18 @@ export function getProjects(): Project[] {
     .sort((a, b) => a.order - b.order);
 }
 
+/** Homepage flagships: featured case studies. */
+export function getFeatured(): CaseStudy[] {
+  return getProjects().filter(
+    (p): p is CaseStudy => p.kind === "case-study" && p.featured,
+  );
+}
+
 export function getProject(slug: string): Project | undefined {
   return getProjects().find((p) => p.slug === slug);
 }
 
-/** Previous and next project, wrapping around (04 §3). */
+/** Previous and next project across all projects, wrapping around. */
 export function getAdjacent(
   slug: string,
 ): { prev: Project; next: Project } | undefined {

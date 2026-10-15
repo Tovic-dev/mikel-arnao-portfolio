@@ -1,11 +1,12 @@
-import type { Project } from "../types";
+import type { CaseStudy } from "../types";
 import { placeholders } from "./_placeholders";
 
 const img = placeholders.mercedes;
 
 // DRAFT copy from "ECODISEÑO DEL DIFUSOR…" (ES). Facts: 09 §3.3.
 // Figures are the report's own modelled results (IHOBE calculator), quoted as reported.
-export const mercedesVentLca: Project = {
+export const mercedesVentLca: CaseStudy = {
+  kind: "case-study",
   slug: "mercedes-vent-lca",
   order: 3,
   title: "Mercedes V-Class air vent",
@@ -23,7 +24,9 @@ export const mercedesVentLca: Project = {
     "Led the evaluation of environmental improvements",
   ],
   tools: ["IHOBE Climate and circularity calculator"],
-  disciplines: ["sustainability", "engineering", "research"],
+  fields: ["sustainability", "engineering", "research"],
+  context: "academic",
+  featured: true,
   hero: img.hero,
   cardImage: img.card,
   processTiles: [img.sketch, img.cad, img.render],

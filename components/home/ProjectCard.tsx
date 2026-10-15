@@ -2,18 +2,9 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { Discipline, Project } from "@/content/types";
+import { fieldLabels, type Project } from "@/content/types";
 import { Reveal } from "@/components/motion/Reveal";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
-
-const disciplineLabel: Record<Discipline, string> = {
-  "product-design": "Product design",
-  cad: "CAD",
-  engineering: "Engineering",
-  sustainability: "Sustainability",
-  research: "Research",
-  ux: "UX/UI",
-};
 
 // Project card (10 §5): whole card is one link; image left, schedule-like metadata right.
 export function ProjectCard({ project }: { project: Project }) {
@@ -52,9 +43,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <Row label="Role" value={project.myRole.join(" · ")} />
             <Row
               label="Field"
-              value={project.disciplines
-                .map((d) => disciplineLabel[d])
-                .join(" · ")}
+              value={project.fields.map((f) => fieldLabels[f]).join(" · ")}
             />
           </dl>
           <span className="mt-8 inline-flex items-center gap-2 label text-ink group-hover:text-accent-text">

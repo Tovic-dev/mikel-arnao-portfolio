@@ -8,6 +8,7 @@ import { PrevNextProject } from "@/components/project/PrevNextProject";
 import { ProjectIntro } from "@/components/project/ProjectIntro";
 import { CaseStudyEntrance } from "@/components/project/CaseStudyEntrance";
 import { SectionIndex } from "@/components/project/SectionIndex";
+import { ShortEntryBody } from "@/components/project/ShortEntryBody";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
 
 // Only slugs from generateStaticParams exist; everything else is a 404 (08 §2).
@@ -37,7 +38,7 @@ export async function generateMetadata({
   };
 }
 
-// Case-study template (05 B).
+// Case-study template (05 B) and short-entry template (05 E).
 export default async function ProjectPage({
   params,
 }: PageProps<"/work/[slug]">) {
@@ -45,17 +46,21 @@ export default async function ProjectPage({
   const project = getProject(slug);
   if (!project) notFound();
   const adjacent = getAdjacent(slug);
+  const total = getProjects().length;
 
-  const index = project.sections.map((s, i) => ({
-    id: s.id,
-    number: String(i + 1).padStart(2, "0"),
-    title: s.title,
-  }));
+  const index =
+    project.kind === "case-study"
+      ? project.sections.map((s, i) => ({
+          id: s.id,
+          number: String(i + 1).padStart(2, "0"),
+          title: s.title,
+        }))
+      : [];
 
   return (
     <article>
       <CaseStudyEntrance />
-      <ProjectIntro project={project} index={index} />
+      <ProjectIntro project={project} index={index} total={total} />
 
       {/* Hero render: the full-bleed moment (05 B1) */}
       <figure
@@ -75,26 +80,30 @@ export default async function ProjectPage({
         {project.hero.placeholder && <PlaceholderTag />}
       </figure>
 
-      <div className="relative">
-        {/* Desktop section index: sticky in columns 1–3, behind full-bleed media */}
-        <aside className="pointer-events-none absolute inset-0 z-5 hidden lg:block">
-          <div className="container-page page-grid h-full">
-            <div className="col-span-3 pt-16 sm:pt-20 lg:pt-24">
-              <div className="pointer-events-auto sticky top-8">
-                <SectionIndex items={index} variant="sticky" />
+      {project.kind === "short" ? (
+        <ShortEntryBody project={project} />
+      ) : (
+        <div className="relative">
+          {/* Desktop section index: sticky in columns 1–3, behind full-bleed media */}
+          <aside className="pointer-events-none absolute inset-0 z-5 hidden lg:block">
+            <div className="container-page page-grid h-full">
+              <div className="col-span-3 pt-16 sm:pt-20 lg:pt-24">
+                <div className="pointer-events-auto sticky top-8">
+                  <SectionIndex items={index} variant="sticky" />
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        {project.sections.map((section, i) => (
-          <CaseSection
-            key={section.id}
-            section={section}
-            number={index[i]?.number ?? String(i + 1)}
-          />
-        ))}
-      </div>
+          {project.sections.map((section, i) => (
+            <CaseSection
+              key={section.id}
+              section={section}
+              number={index[i]?.number ?? String(i + 1)}
+            />
+          ))}
+        </div>
+      )}
 
       {adjacent && (
         <PrevNextProject prev={adjacent.prev} next={adjacent.next} />

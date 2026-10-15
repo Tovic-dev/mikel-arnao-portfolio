@@ -112,6 +112,8 @@ Plan approval ──► 8.1 Setup ──► 8.2 Approval build ──► Checkpo
 | 15 Oct | 8.2 Homepage: curtain hero, sticky process grid, work list, approach, about teaser (placeholders) | ✅ |
 | 15 Oct | 8.2 Case-study template with all media modules; /about; 404; sitemap, robots, JSON-LD, icon | ✅ |
 | 16 Oct | 8.2 Lenis A/B (Lenis chosen), Checkpoint A feedback applied, Lighthouse baseline, `15-checkpoint-a.md` | ✅ Checkpoint A passed |
+| 16 Oct | Work page (`/work`, spec index with filters, list/grid, hover preview), 3 short entries (placeholders), nav Work · About + copy email; tests: 42 a11y + 10 behaviour passing | ✅ |
+| — | Lab page (D-40) | To specify |
 | by 2 Nov | 8.3 Real assets from Mikel in `projects info/<project>/` | Waiting on assets |
 
 Testing note: the in-app browser pane used for checks stops rendering animation frames when it isn't visible, so GSAP tweens can appear frozen half-way there. Motion is verified by reading state after scrolling, and must be checked by Mikel in a normal browser at Checkpoint A.

@@ -2,21 +2,25 @@ import type { Project } from "@/content/types";
 import type { IndexItem } from "./SectionIndex";
 import { SectionIndex } from "./SectionIndex";
 
-// Case-study intro (05 B1): number, title, summary and the role block, all above
+// Project intro for case studies and short entries (05 B1, E): number, title, summary and the role block, all above
 // the fold on desktop and mobile.
 export function ProjectIntro({
   project,
-  index,
+  index = [],
+  total,
 }: {
   project: Project;
-  index: IndexItem[];
+  /** Section index for case studies; short entries have none. */
+  index?: IndexItem[];
+  /** Number of projects, for the "05 / 07" label. */
+  total: number;
 }) {
   const number = String(project.order).padStart(2, "0");
   return (
     <header className="container-page page-grid gap-y-8 pt-10 pb-12 sm:pt-14 lg:pt-16">
       <div className="col-span-full lg:col-span-6">
         <p data-enter="label" className="label text-ink-3">
-          {number} / 04 · {project.productName}
+          {number} / {String(total).padStart(2, "0")} · {project.productName}
         </p>
         <h1 data-enter="title" className="mt-4 text-h1">
           {project.title}
@@ -54,12 +58,16 @@ export function ProjectIntro({
           <Row label="With" value={project.collaboration} />
         )}
         <Row label="Team" value={project.team.join(", ")} />
-        <Row label="Tools" value={project.tools.join(" · ")} />
+        {project.tools.length > 0 && (
+          <Row label="Tools" value={project.tools.join(" · ")} />
+        )}
       </dl>
 
-      <div data-enter="intro" className="col-span-full lg:hidden">
-        <SectionIndex items={index} variant="details" />
-      </div>
+      {index.length > 0 && (
+        <div data-enter="intro" className="col-span-full lg:hidden">
+          <SectionIndex items={index} variant="details" />
+        </div>
+      )}
     </header>
   );
 }
