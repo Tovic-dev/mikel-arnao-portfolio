@@ -1,0 +1,19 @@
+# Source project files (large, private, contain teammates' names) — never commit
+/projects info/
+/assets-raw/
+
+# Agent skills are restorable from skills-lock.json
+/.claude/skills/
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+
+# Future app build output
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
