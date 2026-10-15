@@ -34,7 +34,9 @@ Constraints: Windows paths with spaces (`Portfolio nuevo`). Some tooling handles
 
 ## 3. Content and asset inventory
 
-No project material is in this folder, so every project below is **unverified** until assets are supplied.
+> **Update 2026-10-15:** `projects info/` was added with 10 unique project documents and git was initialised. The authoritative inventory is now `09-content-and-assets.md`. The table below is the original brief-based list, kept for history.
+
+No project material was in this folder at the first audit, so every project below was **unverified** until assets were supplied.
 
 | # | Project | Discipline | Claims to verify | Assets present |
 |---|---|---|---|---|
