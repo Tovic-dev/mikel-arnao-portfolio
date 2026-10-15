@@ -186,3 +186,29 @@
 @utility tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/* Hero scroll hint: 3 cycles, then stops (07 §3H). */
+.scroll-hint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-ink);
+  transform: translateY(-100%);
+  animation: scroll-hint 1.8s cubic-bezier(0.7, 0, 0.3, 1) 1.4s 3 forwards;
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint::after {
+    animation: none;
+  }
+}

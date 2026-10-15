@@ -192,3 +192,8 @@ Preloaders, loading gates and intro screens · scroll hijacking and horizontal s
 - Hero sequence does not delay LCP (LCP measured with motion on vs off differs by < 100 ms).
 - CLS from animation = 0 (only transform, opacity and clip-path change).
 - With JS disabled, every page is complete and readable.
+
+## 9. Implementation notes (Phase 8.2, 2026-10-15)
+- **Review switch `?motion=on` / `?motion=off`.** The Windows PC used for development reports `prefers-reduced-motion: reduce` (most likely Windows "Animation effects" is off), so the site correctly shows the static versions there. Adding `?motion=on` to any URL plays the motion for the rest of the browser session; `?motion=off` clears it. Motion is never forced by default.
+- **Tall hero on phones.** The sticky hero is taller than a phone screen, so it sticks by its bottom edge (`top = viewport height − hero height`, measured with a ResizeObserver). The whole hero scrolls into view before the curtain covers it.
+- **Process grid gap.** The middle column opens by max(40% of a tile, the height needed for the centred text ÷ zoom). On tall phones the original 40% let the tiles cover the text. Tiles sit above the text, so the heading appears through the gap; no blend modes.

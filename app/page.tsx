@@ -1,16 +1,29 @@
-import { site } from "@/content/site";
+import { AboutTeaser } from "@/components/home/AboutTeaser";
+import { Approach } from "@/components/home/Approach";
+import { Hero } from "@/components/home/Hero";
+import { ProcessGrid } from "@/components/home/ProcessGrid";
+import { WorkList } from "@/components/home/WorkList";
+import { getProjects } from "@/content";
 
-// Homepage shell. Hero, process grid and project list arrive in slice 8.2.
+// Homepage (05 A): curtain hero → process grid → work → approach → about → footer.
 export default function HomePage() {
+  const projects = getProjects();
+  const tiles = projects.flatMap((p) => p.processTiles);
+
   return (
-    <section className="container-page py-(--section-space)">
-      <p className="label text-ink-3">{site.role}</p>
-      <h1 className="mt-6 max-w-[14ch] text-display">{site.headline}</h1>
-      <p className="mt-8 max-w-[40ch] text-lead text-ink-2">
-        {site.supporting}
-      </p>
-      <p className="mt-8 label text-ink-3">{site.availability}</p>
-      <div id="work" className="mt-(--section-space)" />
-    </section>
+    <>
+      <Hero />
+      <ProcessGrid
+        tiles={tiles}
+        label={`Selected work · ${String(projects.length).padStart(2, "0")}`}
+        title="Four products, from first sketch to final specification."
+        lead="Team projects with Orbea, Maier and Mondragon Unibertsitatea. In each one I led the stage where a concept becomes a specification."
+        ctaLabel="View projects"
+        ctaHref="#work"
+      />
+      <WorkList projects={projects} />
+      <Approach />
+      <AboutTeaser />
+    </>
   );
 }

@@ -1,7 +1,16 @@
+import { ardura } from "./projects/ardura";
+import { mercedesVentLca } from "./projects/mercedes-vent-lca";
+import { orbeaCycleDry } from "./projects/orbea-cycle-dry";
+import { seatAtecaMirror } from "./projects/seat-ateca-mirror";
 import type { Project } from "./types";
 
-// Projects are added in slice 8.2 (one typed file per project in content/projects/).
-const projects: Project[] = [];
+// One typed file per project in content/projects/.
+const projects: Project[] = [
+  ardura,
+  seatAtecaMirror,
+  mercedesVentLca,
+  orbeaCycleDry,
+];
 
 export function getProjects(): Project[] {
   return projects
