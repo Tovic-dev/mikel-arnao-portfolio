@@ -16,6 +16,9 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-08 | Mikel's role per flagship recorded in `09-content-and-assets.md` §3 | 2026-10-15 |
 | D-11 | A PDF portfolio is required. It will be made **after** the website, derived from the same content and visual system | 2026-10-15 |
 | D-14 | Original renders and CAD files exist (Mikel); to be copied in before Phase 6 | 2026-10-15 |
+| D-12 | Headline **"From concept to specification."** | 2026-10-15 |
+| D-13 | Orbea and Maier allow their names to be used publicly (Mikel). Wording: "Academic project in collaboration with Orbea" / "Carried out with Maier for the SEAT Ateca" | 2026-10-15 |
+| D-15 | Ibili "Jario": **embargoed**. Ibili 2026 competition for the graphics of the nature-inspired "Hydrate & Reuse" bottle line; design unreleased, so copyright blocks publication. Do not show the design or name the result until Ibili launches the line | 2026-10-15 |
 
 ## Round 3 — open
 
@@ -25,9 +28,6 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
 | D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
-| D-12 | Headline | "From concept to specification." (see `01-personal-brand.md` §3) | RECOMMENDED |
-| D-13 | Public wording for Maier (SEAT) and Orbea | "Academic project in collaboration with Orbea" / "…carried out with Maier for the SEAT Ateca". Confirm each company allows its name to be used | OPEN |
-| D-15 | Ibili "Jario" award | Short entry once award name, organiser and date are evidenced | OPEN |
 
 ## Low-impact decisions taken (reversible)
 

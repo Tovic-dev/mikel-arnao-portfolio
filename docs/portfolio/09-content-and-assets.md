@@ -23,7 +23,7 @@ Labels: **Verified** (in a document) · **Stated** (Mikel said so, no document y
 | Tier | Projects |
 |---|---|
 | **Flagship case studies** (MVP) | 1 Ardura · 2 SEAT mirror · 3 Mercedes vent LCA · 4 Orbea rack |
-| Short entries (post-MVP) | BIRA · Senda Norte · Ibili "Jario" (if award is evidenced) · Stroller research |
+| Short entries (post-MVP) | BIRA · Senda Norte · Stroller research |
 | Archive / not shown | Caira · PBL02 |
 | Future (Mikel will add) | UPV house · mobility app · race T-shirts · robotics |
 
@@ -80,7 +80,7 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 | Project | Facts | Status |
 |---|---|---|
 | **BIRA** | June 2026, 3rd year PBL6; Aimar Arauzo, Mikel Arnao, Jon Azpitarte, Ibai Esquivel, Manex Gonzalez. Project done **directly with the Ereindajan company** (real); the **BIRA brand was created by the team** · *Stated* | Short entry |
-| **Ibili "Jario" bottle** | Single-author proposal for Ibili's Hydrate & Reuse line, 3D print + powder coating. **Award-winning, real collaboration with Ibili** · *Stated* | Needs award name, organiser, date and evidence |
+| **Ibili "Jario" bottle** | Single-author entry to Ibili's 2026 competition for the graphics of the nature-inspired, abstract "Hydrate & Reuse" bottle line (3D print + powder coating). Award-winning · *Stated* | **Embargoed** until Ibili launches the line (copyright). Do not publish |
 | **Senda Norte** | 2026; Mikel Arnao, Aimar Arauzo | Short entry; course to confirm |
 | **Stroller research** | Nov 2025; Aimar Arauzo, Mikel Arnao | Short entry; anonymise participants |
 | **UPV house** | Mikel has the distinction document and link | Future |
@@ -89,7 +89,7 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 
 1. **Original renders, CAD screenshots and sketches**: Mikel has them. Copy into `projects info/<project>/` (or `assets-raw/`) before Phase 6.
 2. **Maier** (SEAT) and **Orbea** relationship wording: a line from a brief, email or university page, or an agreed phrasing.
-3. **Ibili award evidence**.
+3. **Ibili "Jario"**: embargoed until launch (D-15).
 4. **Tools per flagship** (SolidWorks / NX / KeyShot / Blender / Adobe).
 5. **Permission and credit** from teammates whose work appears in images.
 6. **English copy**: three of the four flagship sources are in Spanish. Case-study text will be newly written.

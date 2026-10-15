@@ -1,6 +1,6 @@
 # Personal Brand and Positioning
 
-Status: **draft for approval** (2026-10-15) · Depends on: `09-content-and-assets.md`
+Status: **approved: identity, headline, company wording** (2026-10-15). Supporting statement and tone still draft · Depends on: `09-content-and-assets.md`
 
 ## 1. What the evidence shows
 
@@ -65,5 +65,5 @@ Why it works: it is first person, specific, verifiable against the case studies,
 6. Areas of interest (AI, robotics, automation, IoT) appear as **interests**, not skills, until a project supports them.
 
 ## 7. Pending
-- Approve headline B or choose another (D-12).
-- Confirm the wording for Maier and Orbea (D-13).
+- ~~Headline~~: B approved 2026-10-15 (D-12).
+- ~~Company wording~~: approved 2026-10-15 (D-13).
