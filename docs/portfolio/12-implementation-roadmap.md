@@ -103,3 +103,14 @@ Plan approval ──► 8.1 Setup ──► 8.2 Approval build ──► Checkpo
 - One commit per slice; no work lands on `main` without passing `pnpm build`.
 - Specs stay authoritative. If implementation shows a spec is wrong, update the doc in the same commit and note it.
 - New ideas during the build go into a "post-launch" list in `13`, not into the MVP.
+
+## Progress log
+
+| Date | Slice | Status |
+|---|---|---|
+| 15 Oct | 8.1 Setup: Next 16.4.1 static app, tokens, shell, content types; GitHub (private) + Vercel production at mikel-arnao-portfolio.vercel.app | ✅ |
+| 15 Oct | 8.2 Homepage: curtain hero, sticky process grid, work list, approach, about teaser (placeholders) | ✅ |
+| 15 Oct | 8.2 Case-study template with all media modules; /about; 404; sitemap, robots, JSON-LD, icon | ✅ |
+| — | 8.2 Lenis A/B switch (D-33); Lighthouse baseline; checkpoint note | Next |
+
+Testing note: the in-app browser pane used for checks stops rendering animation frames when it isn't visible, so GSAP tweens can appear frozen half-way there. Motion is verified by reading state after scrolling, and must be checked by Mikel in a normal browser at Checkpoint A.
