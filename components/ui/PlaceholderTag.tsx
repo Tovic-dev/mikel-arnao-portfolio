@@ -1,9 +1,6 @@
-// Visible marker on stand-in images outside production (09 §6).
-// VERCEL_ENV is "preview" on preview deployments; locally it's undefined.
-const show = process.env.VERCEL_ENV !== "production";
-
+// Visible marker on stand-in images (09 §6). Shown everywhere: launch requires
+// zero placeholders (14 §1), so it can never reach a finished site.
 export function PlaceholderTag() {
-  if (!show) return null;
   return (
     <span
       aria-hidden="true"
