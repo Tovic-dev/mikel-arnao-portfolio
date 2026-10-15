@@ -111,6 +111,7 @@ Plan approval ──► 8.1 Setup ──► 8.2 Approval build ──► Checkpo
 | 15 Oct | 8.1 Setup: Next 16.4.1 static app, tokens, shell, content types; GitHub (private) + Vercel production at mikel-arnao-portfolio.vercel.app | ✅ |
 | 15 Oct | 8.2 Homepage: curtain hero, sticky process grid, work list, approach, about teaser (placeholders) | ✅ |
 | 15 Oct | 8.2 Case-study template with all media modules; /about; 404; sitemap, robots, JSON-LD, icon | ✅ |
-| — | 8.2 Lenis A/B switch (D-33); Lighthouse baseline; checkpoint note | Next |
+| 16 Oct | 8.2 Lenis A/B (Lenis chosen), Checkpoint A feedback applied, Lighthouse baseline, `15-checkpoint-a.md` | ✅ Checkpoint A passed |
+| by 2 Nov | 8.3 Real assets from Mikel in `projects info/<project>/` | Waiting on assets |
 
 Testing note: the in-app browser pane used for checks stops rendering animation frames when it isn't visible, so GSAP tweens can appear frozen half-way there. Motion is verified by reading state after scrolling, and must be checked by Mikel in a normal browser at Checkpoint A.
