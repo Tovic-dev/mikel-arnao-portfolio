@@ -43,6 +43,7 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-39 | Non-flagship projects appear as **short entries** (lighter page: 1–2 images, role, short description). Ibili stays embargoed (D-15) | 2026-10-16 |
 | D-40 | Navigation: **Work · Lab · About + compact copy-email button**; Contact link removed (footer keeps contact). Lab page to be built | 2026-10-16 |
 | D-41 | Hero role label removed (repeated the header); header now shows the role on every screen size | 2026-10-16 |
+| D-42 | **Lab page** built as specified (contact sheet, Type filter, lightbox with `?entry=`); first real entry "Building this portfolio", the rest placeholders. **Caira and PBL02 not added yet** (Mikel). About's interests moved to the Lab | 2026-10-16 |
 | D-33 | **Lenis smooth scroll** chosen (Checkpoint A): on by default with mouse/trackpad, native on touch and with reduced motion. Review panel and native/Lenis switch removed; `?motion=on` kept until launch | 2026-10-16 |
 | D-37 | Checkpoint A feedback: no about section on the homepage (About page only); "Featured projects" wording (more projects exist); smoother hero→grid curtain as in the reference; grid holds then is covered by featured projects (second curtain); compact footer | 2026-10-16 |
 

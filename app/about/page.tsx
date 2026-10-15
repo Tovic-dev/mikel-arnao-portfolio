@@ -31,25 +31,6 @@ const tools: { tool: string; where: string }[] = [
   { tool: "React · Next.js · TypeScript", where: "This website" },
 ];
 
-const interests: { name: string; why: string }[] = [
-  {
-    name: "Artificial intelligence",
-    why: "How it changes both the products we design and the way we design them.",
-  },
-  {
-    name: "Robotics and industrial automation",
-    why: "Products that have to work inside larger systems, not on their own.",
-  },
-  {
-    name: "Connected products (IoT)",
-    why: "Objects like Ardura, where sensing and energy shape the form.",
-  },
-  {
-    name: "Sustainability and circular design",
-    why: "Measuring impact properly, as in the Mercedes vent LCA, before redesigning.",
-  },
-];
-
 // /about (05 C1). Replaces a CV download (D-18). Draft copy, to confirm with Mikel.
 export default function AboutPage() {
   const projects = getProjects();
@@ -155,14 +136,18 @@ export default function AboutPage() {
       </Block>
 
       <Block label="Interests" id="interests">
-        <ul className="grid gap-x-(--grid-gutter) gap-y-8 sm:grid-cols-2">
-          {interests.map((i) => (
-            <li key={i.name} className="border-t border-rule pt-4">
-              <h3 className="text-h3">{i.name}</h3>
-              <p className="mt-2 text-small text-ink-2">{i.why}</p>
-            </li>
-          ))}
-        </ul>
+        {/* The interests live in the Lab now (05 G1); one line here, no duplication. */}
+        <p className="max-w-[60ch] text-body text-ink-2">
+          AI in design, robotics and automation, connected products and circular
+          design.{" "}
+          <Link
+            href="/lab"
+            className="text-ink underline decoration-rule-strong underline-offset-4 hover:decoration-accent"
+          >
+            See what I&apos;m exploring in the Lab
+          </Link>
+          .
+        </p>
       </Block>
 
       <Block label="Languages" id="languages">

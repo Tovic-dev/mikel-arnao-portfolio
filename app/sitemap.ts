@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: url("/"), changeFrequency: "monthly", priority: 1 },
     { url: url("/work"), changeFrequency: "monthly", priority: 0.9 },
+    { url: url("/lab"), changeFrequency: "monthly", priority: 0.6 },
     { url: url("/about"), changeFrequency: "yearly", priority: 0.6 },
     ...getProjects().map((p) => ({
       url: url(`/work/${p.slug}`),

@@ -26,6 +26,11 @@ export function Header() {
               </NavLink>
             </li>
             <li>
+              <NavLink href="/lab" match="/lab">
+                Lab
+              </NavLink>
+            </li>
+            <li>
               <NavLink href="/about" match="/about">
                 About
               </NavLink>

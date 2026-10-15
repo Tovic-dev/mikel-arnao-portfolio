@@ -441,7 +441,7 @@ type Project = CaseStudy | ShortEntry;
 
 ## Part G — Lab page (`/lab`)
 
-Status: **proposed** (2026-10-16), awaiting Mikel's approval. Decision D-40.
+Status: **approved and built** (2026-10-16; D-40, D-42). Caira and PBL02 are **not** included (Mikel). Lightbox opens with a fade + slight scale (0.3 s) rather than a Flip from the frame: simpler, same feel; revisit if wanted.
 
 ### G0. Purpose
 The place for work that isn't a project: sketches, render and material studies, quick experiments, early-year work, and the technology Mikel is exploring (AI, robotics and automation, connected products). It shows **curiosity and range** without inventing finished projects.

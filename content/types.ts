@@ -167,3 +167,37 @@ export interface ShortEntry extends ProjectBase {
 }
 
 export type Project = CaseStudy | ShortEntry;
+
+/** Lab entries (05 Part G): small explorations, labelled by what they are. */
+export type LabType =
+  "sketch" | "render" | "experiment" | "code" | "early" | "note";
+
+export const labTypeLabels: Record<LabType, string> = {
+  sketch: "Sketch",
+  render: "Render study",
+  experiment: "Experiment",
+  code: "Code",
+  early: "Early work",
+  note: "Note",
+};
+
+export interface LabEntry {
+  /** Stable id, e.g. "L-004". */
+  id: string;
+  title: string;
+  type: LabType;
+  /** ISO date; the year is shown. */
+  date: string;
+  /** 1–4 images; the first is the frame. */
+  images: [ImageAsset, ...ImageAsset[]];
+  /** 1–3 sentences. */
+  note: string;
+  /** Slug of a related project. */
+  relatedProject?: string;
+  link?: { label: string; href: string };
+}
+
+export interface Interest {
+  title: string;
+  note: string;
+}

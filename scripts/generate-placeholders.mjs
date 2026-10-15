@@ -95,6 +95,12 @@ const files = [
       kind: p === "stroller" ? "chart" : "sketch",
     },
   ]),
+  // Lab frames (05 Part G), mixed aspect ratios
+  { name: "lab-sketch-1", w: 1200, h: 1500, kind: "sketch" },
+  { name: "lab-render-1", w: 1800, h: 1200, kind: "render" },
+  { name: "lab-render-2", w: 1200, h: 1200, kind: "photo" },
+  { name: "lab-experiment-1", w: 1800, h: 1200, kind: "cad" },
+  { name: "lab-sketch-2", w: 1200, h: 1200, kind: "sketch" },
   { name: "portrait", w: 1200, h: 1500, kind: "portrait" },
 ];
 
