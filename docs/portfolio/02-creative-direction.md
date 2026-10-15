@@ -1,6 +1,6 @@
 # Creative Direction
 
-Status: **3 directions proposed, A recommended, awaiting approval** (2026-10-15)
+Status: **APPROVED: Direction A "Spec Sheet" + full-bleed render moments (B) + CAD→render transitions (C)** (2026-10-15)
 Inputs: `01-personal-brand.md` (headline "From concept to specification."), `03-reference-research.md`, `09-content-and-assets.md`
 
 ## Constraints the direction must meet
@@ -73,5 +73,5 @@ It is the only direction where the visual system *proves* the headline. It handl
 - No custom cursor, no scroll hijacking, no autoplaying sound.
 
 ## Pending
-- D-04: approve A (or choose B/C).
+- ~~D-04~~: approved 2026-10-15.
 - Accent colour and typeface pair: choose in Phase 6 from 2–3 rendered samples.

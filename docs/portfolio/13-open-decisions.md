@@ -18,15 +18,21 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-14 | Original renders and CAD files exist (Mikel); to be copied in before Phase 6 | 2026-10-15 |
 | D-12 | Headline **"From concept to specification."** | 2026-10-15 |
 | D-13 | Orbea and Maier allow their names to be used publicly (Mikel). Wording: "Academic project in collaboration with Orbea" / "Carried out with Maier for the SEAT Ateca" | 2026-10-15 |
+| D-04 | Creative direction **A "Spec Sheet"**, plus one full-bleed render moment per case study (from B) and CAD→render transitions (from C) | 2026-10-15 |
 | D-15 | Ibili "Jario": **embargoed**. Ibili 2026 competition for the graphics of the nature-inspired "Hydrate & Reuse" bottle line; design unreleased, so copyright blocks publication. Do not show the design or name the result until Ibili launches the line | 2026-10-15 |
 
 ## Round 3 — open
 
 | ID | Decision | Recommendation | Status |
 |---|---|---|---|
-| D-04 | Creative direction | Research 2–3 directions next, recommend "technical editorial" | RECOMMENDED |
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
+| D-16 | Availability label in the hero | E.g. "Open to internships and master's programmes · 2027". Mikel to give the accurate wording | OPEN |
+| D-17 | Mercedes case-study hero (no final render exists) | Photo or render of the existing vent if available, otherwise the hotspot chart as hero | OPEN |
+| D-18 | Contact details: public email, LinkedIn URL, current CV PDF | Needed for footer and `/cv.pdf` | OPEN |
+| D-19 | Domain name | e.g. `mikelarnao.com`. Check availability; buy before launch | OPEN |
+| D-20 | Tools used per flagship project | Fill `tools` field honestly | OPEN |
+| D-21 | IA: home as index, no `/work` page, no `/contact` page, no burger, static header, sticky section index in case studies | See `04-information-architecture.md` | RECOMMENDED |
 | D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
 
 ## Low-impact decisions taken (reversible)
