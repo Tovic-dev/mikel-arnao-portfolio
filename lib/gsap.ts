@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { getReviewPrefs } from "./review";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
@@ -12,22 +13,11 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 export const EASE_OUT = "expo.out"; // ≈ cubic-bezier(0.16, 1, 0.3, 1)
 export const EASE_STANDARD = "power2.inOut";
 
-// Review switch: `?motion=on` plays the motion even when the OS asks for reduced
-// motion (e.g. Windows "Animation effects" off); `?motion=off` clears it. Kept for
-// the session only, never on by default.
-function motionForced(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    const param = new URLSearchParams(window.location.search).get("motion");
-    if (param === "on") sessionStorage.setItem("motion", "on");
-    if (param === "off") sessionStorage.removeItem("motion");
-    return sessionStorage.getItem("motion") === "on";
-  } catch {
-    return false;
-  }
-}
+// Review switch (lib/review.ts): `?motion=on` plays the motion even when the OS
+// asks for reduced motion (e.g. Windows "Animation effects" off). Session only.
+export const MOTION_FORCED = getReviewPrefs().motion === "on";
 
-export const MOTION_OK = motionForced()
+export const MOTION_OK = MOTION_FORCED
   ? "all"
   : "(prefers-reduced-motion: no-preference)";
 

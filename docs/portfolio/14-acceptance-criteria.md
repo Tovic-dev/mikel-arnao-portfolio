@@ -25,7 +25,7 @@ Sections 1–4 apply at **Checkpoint A** (with placeholders). Everything applies
 - [ ] Reveals play once, never reverse; body text never animates.
 - [ ] Reduced motion: no transforms, static process grid, scroll hint off, everything visible (`07` §6).
 - [ ] JavaScript disabled: every page is complete and readable.
-- [ ] Lenis decision (D-33) made and implemented, or removed entirely.
+- [ ] Lenis decision (D-33) made: the losing option and the review panel (`components/ui/ReviewPanel.tsx`, `lib/review.ts` switches) removed from the code.
 - [ ] No console errors or warnings in production.
 
 ## 4. Technical
