@@ -212,3 +212,8 @@
     animation: none;
   }
 }
+
+/* Featured projects slide over the last screen of the sticky process grid (07 §3I). */
+#process[data-animated="true"] + #work {
+  margin-top: -100svh;
+}

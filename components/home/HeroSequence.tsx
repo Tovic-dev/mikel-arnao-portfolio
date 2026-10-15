@@ -1,7 +1,14 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { gsap, MOTION_OK, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsap";
+import {
+  gsap,
+  MOTION_OK,
+  ScrollTrigger,
+  scrubAmount,
+  SplitText,
+  useGSAP,
+} from "@/lib/gsap";
 
 // Owns the hero load timeline (07 §3B, ≤ 1.4 s) and the curtain scroll-out (07 §3H).
 // Adapted from "Sticky Grid Scroll" by Theo Plawinski (Codrops), MIT licence.
@@ -104,7 +111,7 @@ export function HeroSequence({ children }: { children: ReactNode }) {
               trigger: next,
               start: "top bottom",
               end: "top top",
-              scrub: 0.6,
+              scrub: scrubAmount(),
               onLeave: () => gsap.set(root, { visibility: "hidden" }),
               onEnterBack: () => gsap.set(root, { visibility: "visible" }),
             },
@@ -112,9 +119,9 @@ export function HeroSequence({ children }: { children: ReactNode }) {
           if (motion) {
             tl.to(
               inner,
-              { scale: small ? 0.97 : 0.95, yPercent: -6, ease: "none" },
+              { scale: small ? 0.96 : 0.94, yPercent: -8, ease: "none" },
               0,
-            ).to(shade, { opacity: small ? 0.3 : 0.4, ease: "none" }, 0);
+            ).to(shade, { opacity: small ? 0.35 : 0.5, ease: "none" }, 0);
           } else {
             tl.to({}, { duration: 1 });
           }

@@ -5,7 +5,13 @@ import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
 import type { ImageAsset } from "@/content/types";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
-import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import {
+  gsap,
+  MOTION_OK,
+  ScrollTrigger,
+  scrubAmount,
+  useGSAP,
+} from "@/lib/gsap";
 
 interface ProcessGridProps {
   /** 12 tiles in row-major order: one row per project, columns sketch → CAD → render. */
@@ -107,8 +113,9 @@ export function ProcessGrid({
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "bottom bottom",
-            scrub: 0.6,
+            // The last screen of the section is the curtain (see below).
+            end: () => `+=${section.offsetHeight - 2 * window.innerHeight}`,
+            scrub: scrubAmount(),
             invalidateOnRefresh: true,
             onToggle: (self) => {
               gsap.set(items, {
@@ -169,10 +176,42 @@ export function ProcessGrid({
 
         tl.add(reveal)
           .add(zoom, "-=0.6")
-          .add(
-            () => toggleContent(tl.scrollTrigger?.direction === 1),
-            "-=0.32",
-          );
+          .add(() => toggleContent(tl.scrollTrigger?.direction === 1), "-=0.32")
+          .to({}, { duration: 0.5 });
+
+        // Heading fades in as the dark section rises over the hero (as in the original).
+        gsap.from(heading, {
+          opacity: 0,
+          duration: 0.7,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 57%",
+            toggleActions: "play none none reset",
+          },
+        });
+
+        // Curtain out: the featured projects slide over the stage, which recedes.
+        const next = section.nextElementSibling as HTMLElement | null;
+        const stage = q("[data-pg=stage]")[0] as HTMLElement;
+        const shade = q("[data-pg=shade]")[0] as HTMLElement;
+        if (next && stage && shade) {
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: next,
+                start: "top bottom",
+                end: "top top",
+                scrub: scrubAmount(),
+              },
+            })
+            .to(
+              stage,
+              { scale: small ? 0.96 : 0.94, yPercent: -8, ease: "none" },
+              0,
+            )
+            .to(shade, { opacity: small ? 0.35 : 0.5, ease: "none" }, 0);
+        }
 
         ScrollTrigger.refresh();
 
@@ -190,9 +229,12 @@ export function ProcessGrid({
       ref={root}
       id="process"
       aria-labelledby="process-title"
-      className="group/pg relative z-1 bg-ink text-paper data-[animated=true]:h-[200svh] sm:data-[animated=true]:h-[260vh]"
+      className="group/pg relative z-1 bg-ink text-paper data-[animated=true]:h-[300svh] sm:data-[animated=true]:h-[380vh]"
     >
-      <div className="container-page py-(--section-space) group-data-[animated=true]/pg:sticky group-data-[animated=true]/pg:top-0 group-data-[animated=true]/pg:h-svh group-data-[animated=true]/pg:overflow-hidden group-data-[animated=true]/pg:py-0">
+      <div
+        data-pg="stage"
+        className="container-page origin-bottom py-(--section-space) group-data-[animated=true]/pg:sticky group-data-[animated=true]/pg:top-0 group-data-[animated=true]/pg:h-svh group-data-[animated=true]/pg:overflow-hidden group-data-[animated=true]/pg:py-0"
+      >
         <div
           data-pg="content"
           className="relative z-1 flex flex-col items-start text-left group-data-[animated=true]/pg:h-svh group-data-[animated=true]/pg:items-center group-data-[animated=true]/pg:justify-center group-data-[animated=true]/pg:text-center"
@@ -251,6 +293,11 @@ export function ProcessGrid({
             ))}
           </ul>
         </div>
+        <div
+          data-pg="shade"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-3 hidden bg-ink opacity-0 group-data-[animated=true]/pg:block"
+        />
       </div>
     </section>
   );

@@ -7,11 +7,11 @@ export function WorkList({ projects }: { projects: Project[] }) {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="relative z-1 scroll-mt-4 bg-paper"
+      className="relative z-2 scroll-mt-4 bg-paper"
     >
-      <div className="container-page py-(--section-space)">
+      <div className="container-page pt-16 pb-(--section-space) lg:pt-24">
         <h2 id="work-title" className="sr-only">
-          Selected work
+          Featured projects
         </h2>
         <ol className="flex flex-col gap-24 lg:gap-32">
           {projects.map((p) => (

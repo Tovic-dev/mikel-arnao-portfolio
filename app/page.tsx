@@ -1,4 +1,3 @@
-import { AboutTeaser } from "@/components/home/AboutTeaser";
 import { Approach } from "@/components/home/Approach";
 import { Hero } from "@/components/home/Hero";
 import { ProcessGrid } from "@/components/home/ProcessGrid";
@@ -42,15 +41,14 @@ export default function HomePage() {
       <Hero />
       <ProcessGrid
         tiles={tiles}
-        label={`Selected work · ${String(projects.length).padStart(2, "0")}`}
-        title="Four products, from first sketch to final specification."
+        label="Featured projects"
+        title="Featured projects, from first sketch to final specification."
         lead="Team projects with Orbea, Maier and Mondragon Unibertsitatea. In each one I led the stage where a concept becomes a specification."
-        ctaLabel="View projects"
+        ctaLabel="View featured projects"
         ctaHref="#work"
       />
       <WorkList projects={projects} />
       <Approach />
-      <AboutTeaser />
     </>
   );
 }

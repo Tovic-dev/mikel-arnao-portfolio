@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { getReviewPrefs } from "./review";
+import { motionForced } from "./review";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
@@ -13,13 +13,26 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 export const EASE_OUT = "expo.out"; // ≈ cubic-bezier(0.16, 1, 0.3, 1)
 export const EASE_STANDARD = "power2.inOut";
 
-// Review switch (lib/review.ts): `?motion=on` plays the motion even when the OS
-// asks for reduced motion (e.g. Windows "Animation effects" off). Session only.
-export const MOTION_FORCED = getReviewPrefs().motion === "on";
+export const MOTION_FORCED = motionForced();
 
 export const MOTION_OK = MOTION_FORCED
   ? "all"
   : "(prefers-reduced-motion: no-preference)";
+
+/** Lenis runs with a mouse or trackpad when motion is allowed (D-33: Lenis chosen). */
+export function smoothScrollActive(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+    window.matchMedia(MOTION_OK).matches
+  );
+}
+
+/** Scroll-linked timelines: Lenis already smooths the scroll, so scrub 1:1;
+ *  with native touch scrolling, smooth the animation itself instead. */
+export function scrubAmount(): true | number {
+  return smoothScrollActive() ? true : 0.6;
+}
 
 gsap.defaults({ ease: EASE_OUT, duration: 0.7 });
 

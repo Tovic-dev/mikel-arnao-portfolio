@@ -39,6 +39,8 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-21 | IA: home as index, no `/work` or `/contact` page, no burger, static header, sticky section index in case studies (`04`) | 2026-10-15 |
 | D-10 | Timeline: approval build by 1 Nov, real content by 15 Nov, launch 23 Nov, PDF 24 Nov – 6 Dec, buffer to mid-Dec | 2026-10-15 |
 | **D-36** | **Final plan approved; Phase 8 implementation authorised** | 2026-10-15 |
+| D-33 | **Lenis smooth scroll** chosen (Checkpoint A): on by default with mouse/trackpad, native on touch and with reduced motion. Review panel and native/Lenis switch removed; `?motion=on` kept until launch | 2026-10-16 |
+| D-37 | Checkpoint A feedback: no about section on the homepage (About page only); "Featured projects" wording (more projects exist); smoother hero→grid curtain as in the reference; grid holds then is covered by featured projects (second curtain); compact footer | 2026-10-16 |
 
 ## Open
 
@@ -46,7 +48,6 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 |---|---|---|---|
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
-| D-33 | Lenis smooth scroll | Prototype A/B on desktop: native scroll + `scrub: 0.6` vs Lenis (desktop only, off for touch and reduced motion). Mikel decides by feel | OPEN (at prototype) |
 | D-35 | Exact master's application deadline(s) | Tell me when known; the roadmap assumes ≈ 15 Dec | OPEN |
 | D-23 | Git commit email is `arnaomikel10@email.com` (domain "email.com") while the contact email is `@gmail.com` | Probably a typo in your git config. Fix with `git config --global user.email` if so | OPEN |
 

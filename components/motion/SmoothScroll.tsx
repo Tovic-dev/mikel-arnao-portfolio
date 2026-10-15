@@ -4,24 +4,22 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { gsap, MOTION_FORCED, MOTION_OK, ScrollTrigger } from "@/lib/gsap";
-import { getReviewPrefs } from "@/lib/review";
+import {
+  gsap,
+  MOTION_FORCED,
+  ScrollTrigger,
+  smoothScrollActive,
+} from "@/lib/gsap";
 
-// Lenis smooth scroll for the D-33 comparison (07 §4). Off unless chosen with
-// ?scroll=lenis or the review panel. Desktop pointers only (touch keeps native
-// momentum), and off when motion is reduced unless motion is forced for review.
-// Driven from the GSAP ticker so there is one animation loop.
+// Lenis smooth scroll (D-33: chosen by Mikel at Checkpoint A). Mouse and trackpad
+// only (touch keeps native momentum); off with reduced motion unless motion is
+// forced for review. Driven from the GSAP ticker so there is one animation loop.
 export function SmoothScroll() {
   const lenis = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    if (getReviewPrefs().scroll !== "lenis") return;
-    const desktop = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const motion = window.matchMedia(
-      MOTION_OK === "all" ? "all" : "(prefers-reduced-motion: no-preference)",
-    );
-    if (!desktop.matches || !motion.matches) return;
+    if (!smoothScrollActive()) return;
 
     const instance = new Lenis({
       autoRaf: false,
@@ -35,14 +33,12 @@ export function SmoothScroll() {
     const tick = (time: number) => instance.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
-    document.documentElement.dataset.scroll = "lenis";
 
     return () => {
       gsap.ticker.remove(tick);
       gsap.ticker.lagSmoothing(500, 33);
       instance.destroy();
       lenis.current = null;
-      delete document.documentElement.dataset.scroll;
     };
   }, []);
 

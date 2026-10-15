@@ -257,3 +257,9 @@ Layout: single reading column (cols 3â€“10 desktop) with mono labels in cols 1â€
 - H1 **Page not found**, one sentence, then the 4 project cards in compact form (title + number only) and a link home.
 - Same header and footer. No illustration, no animation.
 - Status 404 (Next `not-found.tsx`), `noindex`.
+
+
+## Checkpoint A changes (2026-10-16, D-37)
+- **A5 About (short) removed** from the homepage; the About page is reached from the navigation only.
+- **A2b / A3 wording:** label "Featured projects", title "Featured projects, from first sketch to final specification.", CTA "View featured projects". The project list's hidden heading is "Featured projects".
+- **A6 footer made compact:** label "Contact", email at h3 size with Copy and LinkedIn beside it, then the location / sign-off / copyright row. About 200px tall on desktop.
