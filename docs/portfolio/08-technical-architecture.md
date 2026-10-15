@@ -181,3 +181,13 @@ Implementation rules:
 - GSAP Standard Licence page (gsap.com/community/standard-license).
 - MDN browser-compat-data (GitHub, `animation-timeline`), Mozilla product-details (Firefox stable 158, beta 159).
 - **Not verified yet:** Vercel Hobby image-optimisation quota and terms (check on the Vercel pricing page in Phase 8); SplitText accessibility output (check in browser in Phase 8).
+
+## 13. Implementation notes (Phase 8.1, 2026-10-15)
+
+Facts found during setup that refine the plan:
+- **Versions installed:** next 16.4.1 (`latest` on npm; the 16.4.2 GitHub tag isn't on npm yet and only backports Turbopack and docs fixes), react / react-dom 19.3.1 (the template pinned 19.3.0), typescript 5.9.3, tailwindcss 4.3.3 with `@tailwindcss/turbopack`, gsap 3.15.0, @gsap/react 2.1.2, lucide-react 1.57.0, eslint 9.39.5, prettier 3.9.10, sharp 0.35.5. `pnpm audit`: no known vulnerabilities.
+- **Cache Components off.** The 16.4 template enables `cacheComponents` and `partialPrefetching`. The bundled docs say `dynamicParams` "is not compatible with `nextConfig.cacheComponents`" and that unknown params then render on request. This site has no request-time data, so both flags are off and `dynamicParams = false` keeps every route prebuilt (`next build` shows `/`, `/about` as ○ static and `/work/[slug]` as ● SSG).
+- **`priority` is deprecated** for `next/image` in Next 16. The hero uses `preload` (bundled docs, `image.md`).
+- **`images.qualities` is required** in Next 16; set to `[75, 85]`. Formats: AVIF, then WebP.
+- **Typed route helpers** (`PageProps`, `LayoutProps`) are generated, so `pnpm typecheck` runs `next typegen` first.
+- **Template `AGENTS.md`** (Next.js agent rules, re-added by `next dev`) is committed as the template recommends.

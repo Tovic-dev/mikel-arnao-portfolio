@@ -1,0 +1,5 @@
+docs/
+.claude/
+projects info/
+pnpm-lock.yaml
+skills-lock.json

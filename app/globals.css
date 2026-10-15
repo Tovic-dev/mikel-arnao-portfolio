@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — docs/portfolio/10-design-system.md
+ * Global tokens only. Values specific to one composition stay in that component.
+ */
+@theme {
+  /* Colour (§1). Contrast ratios on paper are documented in the design system. */
+  --color-*: initial;
+  --color-paper: #eeece7;
+  --color-raised: #f7f6f3;
+  --color-ink: #161614;
+  --color-ink-2: #55534e;
+  --color-ink-3: #67655f;
+  --color-rule: #16161429;
+  --color-rule-strong: #16161466;
+  --color-accent: #e04800; /* lines, markers, focus ring (≥ 3:1) */
+  --color-accent-text: #b83a00; /* accent text (≥ 4.5:1) */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Typography (§2). Families come from next/font variables set in the layout. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --text-display: clamp(2.75rem, 1.4296rem + 5.6338vw, 6.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.035em;
+  --text-h1: clamp(2.25rem, 1.4577rem + 3.3803vw, 4.5rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: clamp(1.75rem, 1.3099rem + 1.8779vw, 3rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-lead: clamp(1.1875rem, 1.1215rem + 0.2817vw, 1.375rem);
+  --text-lead--line-height: 1.45;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.5;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.3;
+  --text-label--letter-spacing: 0.06em;
+  --text-mono-body: 0.8125rem;
+  --text-mono-body--line-height: 1.5;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  /* Breakpoints (§3): mobile < 640, tablet 640–1023, desktop ≥ 1024, wide ≥ 1440 */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 90rem;
+
+  /* Radius: square corners everywhere (§3) */
+  --radius-*: initial;
+
+  /* Motion (§4, 07 §2) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --animate-*: initial;
+}
+
+:root {
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-draw: 500ms;
+  --dur-reveal: 700ms;
+
+  /* Grid (§3) */
+  --grid-columns: 4;
+  --grid-gutter: 1rem;
+  --page-margin: 1rem;
+  --page-max: 100rem;
+  --section-space: clamp(6rem, 3.8873rem + 9.0141vw, 12rem);
+
+  /* Layers (§3) */
+  --z-raised: 10;
+  --z-sticky: 20;
+  --z-skip: 100;
+}
+
+@media (width >= 40rem) {
+  :root {
+    --grid-columns: 8;
+    --grid-gutter: 1.25rem;
+    --page-margin: 2rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --grid-columns: 12;
+    --grid-gutter: 1.5rem;
+    --page-margin: 3rem;
+  }
+}
+
+@media (width >= 90rem) {
+  :root {
+    --page-margin: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-base: 0ms;
+    --dur-draw: 0ms;
+    --dur-reveal: 0ms;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Mono uppercase label (§2, text-label) */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--text-label--letter-spacing);
+  text-transform: uppercase;
+}
+
+/* 4 / 8 / 12-column page grid (§3) */
+@utility page-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+}
+
+/* Centred page container with outer margins and max width (§3) */
+@utility container-page {
+  width: 100%;
+  max-width: calc(var(--page-max) + 2 * var(--page-margin));
+  margin-inline: auto;
+  padding-inline: var(--page-margin);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}

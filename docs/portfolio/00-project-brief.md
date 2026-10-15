@@ -1,6 +1,6 @@
 # Project Brief — Mikel Arnao Portfolio
 
-Status: **awaiting final approval** (2026-10-15). This page summarises the whole plan; each line links to the document that holds the detail.
+Status: **APPROVED** (2026-10-15). Implementation authorised. This page summarises the whole plan; each line links to the document that holds the detail.
 
 ## Vision
 A personal portfolio that presents Mikel Arnao as a **Product Designer & Design Engineer**: someone who takes products **from concept to specification**. It works for a recruiter scanning for 30 seconds and for an admissions panel reading for 15 minutes.

@@ -5,15 +5,37 @@
 # Agent skills are restorable from skills-lock.json
 /.claude/skills/
 
-# OS / editor
-Thumbs.db
-desktop.ini
-.DS_Store
-.vscode/
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
 
-# Future app build output
-node_modules/
-.next/
-.vercel/
+# testing
+/coverage
+/test-results/
+/playwright-report/
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# env files
 .env*
 !.env.example
+
+# vercel
+.vercel
+
+# debug
+npm-debug.log*
+.pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.pem
