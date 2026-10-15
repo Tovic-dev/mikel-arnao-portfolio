@@ -39,3 +39,7 @@ Thumbs.db
 desktop.ini
 .vscode/
 *.pem
+
+# Playwright
+/test-results/
+/playwright-report/

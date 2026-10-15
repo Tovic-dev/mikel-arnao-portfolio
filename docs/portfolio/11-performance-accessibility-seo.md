@@ -15,12 +15,14 @@ Lab = Lighthouse mobile preset (simulated slow 4G, 4× CPU), median of 3 runs. F
 | CLS | **≤ 0.02** (aim 0) | ≤ 0.05 | Static image dimensions, `next/font` size-adjust, animations transform-only |
 | INP | — (lab: TBT ≤ 150 ms) | **≤ 200 ms** | Scrubbed timelines must not run JS-heavy work per frame |
 | Lighthouse Performance | **≥ 90** mobile, ≥ 95 desktop | — | Homepage and one case study |
-| First-load JS (gzip) | Home **≤ 180 KB**; case study ≤ 170 KB; /about ≤ 140 KB | — | Includes the framework (~100 KB). GSAP + ScrollTrigger + SplitText ≈ 50 KB, estimated: measure |
+| First-load JS (transferred) | Home **≤ 220 KB**; case study ≤ 230 KB; /about ≤ 200 KB (revised 2026-10-16, see note) | — | Measured: Next 16 + React framework ≈ 150 KB (fixed), GSAP + ScrollTrigger + SplitText ≈ 46 KB, Lenis ≈ 10 KB. Home 213 KB, Ardura 222 KB |
 | Hero image | ≤ 200 KB at 375 px width, ≤ 350 KB at 1440 px | — | AVIF/WebP from `next/image` |
 | Initial page weight (home, above the fold) | ≤ 900 KB | — | Grid tiles and cards lazy-load |
 | Fonts | ≤ 2 woff2 files preloaded, ≤ 120 KB total | — | Variable Geist + Geist Mono, Latin subset |
 | Third-party requests | **0** | — | No analytics, fonts or CDNs at runtime in the MVP |
 | Animation | No long tasks > 50 ms during scroll; ≥ 55 fps in the process grid on a mid-range Android (DevTools 4× CPU as proxy) | — | `07` §8 |
+
+> **Budget revision (Checkpoint A).** The original 180 KB assumed a ~100 KB framework, an estimate made before measuring. The framework alone is ~150 KB in Next 16.4. With TBT ≈ 10 ms and Performance 97 (DevTools throttling), the approved motion stack (GSAP, Lenis) is kept and the budget raised to match. Any new dependency must fit inside it.
 
 ### Rules that protect the targets
 - All routes are static (SSG). No runtime server work.

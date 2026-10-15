@@ -9,7 +9,10 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "images:export": "node scripts/export-images.mjs",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "test:a11y": "playwright test"
   },
   "dependencies": {
     "@gsap/react": "2.1.2",
@@ -21,12 +24,15 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.1",
+    "geist": "1.7.2",
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
     "sharp": "0.35.5",
