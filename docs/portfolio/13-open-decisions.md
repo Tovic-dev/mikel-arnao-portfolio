@@ -12,18 +12,22 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-05a | Ardura / iF: **participation only, not an award**. Mention at most as "submitted to iF Design Student Award" once the exact competition name is confirmed, or leave it out | 2026-10-15 |
 | D-06 | **Deadline: master's applications in ~2 months (≈ mid-December 2026).** Planning must be short and an MVP must ship well before then | 2026-10-15 |
 | L-02 | Git initialised on `main`; `projects info/` and `.claude/skills/` ignored | 2026-10-15 |
+| D-07 | Flagships: 1 Ardura, 2 SEAT mirror, 3 Mercedes vent LCA, 4 Orbea rack. More projects added later | 2026-10-15 |
+| D-08 | Mikel's role per flagship recorded in `09-content-and-assets.md` §3 | 2026-10-15 |
+| D-11 | A PDF portfolio is required. It will be made **after** the website, derived from the same content and visual system | 2026-10-15 |
+| D-14 | Original renders and CAD files exist (Mikel); to be copied in before Phase 6 | 2026-10-15 |
 
-## Round 2 — open
+## Round 3 — open
 
 | ID | Decision | Recommendation | Status |
 |---|---|---|---|
-| D-04 | Creative direction | "Technical editorial" | RECOMMENDED |
-| D-05b | UPV competition (house): add the document and link | Put them in `projects info/`; claim worded only as the document states | OPEN |
-| D-07 | Project selection and order | See assessment: 4 flagship case studies + short entries | RECOMMENDED |
-| D-08 | Mikel's individual role per team project | Needed before any case-study copy | OPEN |
-| D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Include only if files arrive within ~2 weeks | RECOMMENDED |
-| D-10 | Planning depth vs deadline | Compress phases 1–7 into ~2 weeks, build MVP in weeks 3–6, polish in weeks 7–8 | RECOMMENDED |
-| D-11 | Does the master's application need a PDF portfolio too? | If yes, design both from the same content and visual system | OPEN |
+| D-04 | Creative direction | Research 2–3 directions next, recommend "technical editorial" | RECOMMENDED |
+| D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
+| D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
+| D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
+| D-12 | Headline | "From concept to specification." (see `01-personal-brand.md` §3) | RECOMMENDED |
+| D-13 | Public wording for Maier (SEAT) and Orbea | "Academic project in collaboration with Orbea" / "…carried out with Maier for the SEAT Ateca". Confirm each company allows its name to be used | OPEN |
+| D-15 | Ibili "Jario" award | Short entry once award name, organiser and date are evidenced | OPEN |
 
 ## Low-impact decisions taken (reversible)
 
