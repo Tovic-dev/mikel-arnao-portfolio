@@ -87,20 +87,29 @@ export function MediaBlock({
     }
   })();
 
+  // Full-bleed media (image and caption strip) is opaque and sits above the sticky
+  // section index, so the index passes underneath instead of overlapping the caption.
+  if (width === "full-bleed") {
+    return (
+      <figure className="relative z-(--z-raised) w-full bg-paper pb-2">
+        {body}
+        <div className="container-page page-grid">
+          <div className="col-span-full lg:col-span-9 lg:col-start-4">
+            <Caption
+              figure={figure}
+              text={media.caption}
+              credit={media.credit}
+            />
+          </div>
+        </div>
+      </figure>
+    );
+  }
+
   return (
-    <figure
-      className={
-        width === "full-bleed"
-          ? "relative z-(--z-raised) w-full"
-          : width === "text"
-            ? "lg:max-w-[min(100%,48rem)]"
-            : ""
-      }
-    >
+    <figure className={width === "text" ? "lg:max-w-[min(100%,48rem)]" : ""}>
       {body}
-      <div className={width === "full-bleed" ? "container-page" : ""}>
-        <Caption figure={figure} text={media.caption} credit={media.credit} />
-      </div>
+      <Caption figure={figure} text={media.caption} credit={media.credit} />
     </figure>
   );
 }
