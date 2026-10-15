@@ -29,14 +29,15 @@ export function HoverPreview({
     const yTo = gsap.quickTo(el, "y", { duration: 0.35, ease: "power3.out" });
     let current: string | null = null;
 
-    const place = (e: PointerEvent) => {
+    // Last known pointer position (viewport coordinates).
+    let px = -1;
+    let py = -1;
+
+    const place = () => {
       const w = el.offsetWidth;
       const h = el.offsetHeight;
-      const x = Math.min(e.clientX + 24, window.innerWidth - w - 16);
-      const y = Math.min(
-        Math.max(e.clientY - h / 2, 16),
-        window.innerHeight - h - 16,
-      );
+      const x = Math.min(px + 24, window.innerWidth - w - 16);
+      const y = Math.min(Math.max(py - h / 2, 16), window.innerHeight - h - 16);
       xTo(x);
       yTo(y);
     };
@@ -67,28 +68,56 @@ export function HoverPreview({
     };
 
     const hide = () => {
+      if (current === null) return;
       current = null;
       gsap.to(el, { autoAlpha: 0, duration: 0.2, overwrite: "auto" });
     };
 
-    const onMove = (e: PointerEvent) => {
-      const row = (e.target as HTMLElement).closest<HTMLElement>("[data-row]");
-      if (!row || row.hidden) return hide();
-      place(e);
+    // Decide from what is under the pointer right now, so the preview stays in
+    // sync when rows move under a still cursor (wheel / Lenis scrolling), not
+    // only on pointer events (which the browser doesn't send while scrolling).
+    const update = () => {
+      if (px < 0) return;
+      const hit = document.elementFromPoint(px, py);
+      const row = hit?.closest<HTMLElement>("[data-row]");
+      if (!row || row.hidden || !list.contains(row)) return hide();
+      place();
       show(row.dataset.row ?? "");
     };
 
-    list.addEventListener("pointermove", onMove);
-    list.addEventListener("pointerleave", hide);
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    const onMove = (e: PointerEvent) => {
+      px = e.clientX;
+      py = e.clientY;
+      update();
+    };
+    const onLeaveWindow = () => {
+      px = -1;
+      hide();
+    };
+
+    document.addEventListener("pointermove", onMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onLeaveWindow);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      list.removeEventListener("pointermove", onMove);
-      list.removeEventListener("pointerleave", hide);
+      cancelAnimationFrame(frame);
+      document.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener(
+        "pointerleave",
+        onLeaveWindow,
+      );
+      window.removeEventListener("scroll", onScroll);
     };
   }, [listRef]);
 
   return (
     <div
       ref={box}
+      data-hover-preview
       aria-hidden="true"
       className="pointer-events-none invisible fixed top-0 left-0 z-(--z-raised) aspect-3/2 w-[min(22vw,23.75rem)] overflow-hidden bg-raised opacity-0"
     >
