@@ -438,3 +438,85 @@ type Project = CaseStudy | ShortEntry;
 - `Field`: `product-design` · `engineering` (Engineering & CAD; merges today's `cad` and `engineering`) · `sustainability` · `research` · `brand` · `ux`.
 - The homepage list and process grid use `featured` case studies only; `/work` uses everything.
 - TypeScript still fails the build on missing required fields.
+
+## Part G — Lab page (`/lab`)
+
+Status: **proposed** (2026-10-16), awaiting Mikel's approval. Decision D-40.
+
+### G0. Purpose
+The place for work that isn't a project: sketches, render and material studies, quick experiments, early-year work, and the technology Mikel is exploring (AI, robotics and automation, connected products). It shows **curiosity and range** without inventing finished projects.
+
+**Honesty rule:** every Lab entry is labelled by what it is (Sketch, Render study, Experiment, Code, Early work, Note). Nothing in the Lab is presented as client work or as a finished product. Interests stay interests until a project supports them (`01` §6).
+
+### G1. Layout: "contact sheet"
+
+A photographer's contact sheet in the Spec Sheet language: a dense grid of numbered frames (`L-001`, `L-002`…), each with a type tag and date. It's visual and quick to scan, and clearly different from the Work index, so the two pages don't feel like duplicates.
+
+```
+┌───────────────────────────────────────────────────────────────────────┐
+│ LAB                                                                    │
+│ Explorations                                         (h1)              │
+│ Sketches, studies and experiments outside the main projects.           │
+├───────────────────────────────────────────────────────────────────────┤
+│ CURRENTLY EXPLORING                                                    │
+│ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐        │
+│ │ AI in design│ │ Robotics &  │ │ Connected   │ │ Circular    │        │
+│ │ 2–3 lines   │ │ automation  │ │ products    │ │ design      │        │
+│ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘        │
+├───────────────────────────────────────────────────────────────────────┤
+│ TYPE  [All] [Sketch] [Render study] [Experiment] [Code] [Early work]   │
+│                                                                        │
+│ ┌────┐ ┌────────┐ ┌────┐ ┌────┐                                        │
+│ │    │ │        │ │    │ │    │   frames keep their own aspect ratio   │
+│ └────┘ └────────┘ └────┘ └────┘   (square, 3:2, 4:5), aligned to rows  │
+│ L-004   L-003      L-002  L-001                                         │
+│ SKETCH  RENDER     CODE   EARLY                                         │
+│ 2026    2026       2026   2024                                          │
+└───────────────────────────────────────────────────────────────────────┘
+```
+
+- **Grid:** 4 columns desktop, 3 tablet, 2 phone; frames in a row share a height and keep their aspect ratio (justified rows). Newest first.
+- **Frame caption:** `L-004 · SKETCH · 2026` (mono), plus a title on hover/focus (desktop) or always (touch).
+- **Opening a frame:** a **lightbox** (native `<dialog>`, not a new page) with the larger image or images, a short note (1–3 sentences), the type, date and, where relevant, the related project ("From the Ardura project") or an external link (e.g. a GitHub repo for Code). Previous/next arrows, Esc to close, focus returned to the frame, `?entry=L-004` in the URL so an entry can be shared.
+- **Filter:** one Type filter (single-select, chips like the Work page), kept in the URL. No Field/Year filters: the Lab is meant for browsing, not searching.
+- **"Currently exploring"** strip: four short notes on Mikel's interests (what draws him to each, one line on how it connects to his work). It replaces the Interests block on `/about`, which becomes a one-line link to the Lab, so nothing is duplicated.
+
+### G2. Motion
+- Load: H1 line reveal; frames clip-reveal bottom→top in rows, stagger 40 ms (first 12 only).
+- Filter: GSAP Flip as on the Work page (Flip is already loaded on demand).
+- Lightbox: image scales from the frame position into the dialog (Flip, 0.45 s); reduced motion: instant open/close.
+- No hover preview (the frames are already images).
+
+### G3. Data model
+```ts
+type LabType = "sketch" | "render" | "experiment" | "code" | "early" | "note";
+interface LabEntry {
+  id: string;            // "L-004", stable
+  title: string;
+  type: LabType;
+  date: string;          // ISO; year shown
+  images: ImageAsset[];  // 1–4; first is the frame
+  note: string;          // 1–3 sentences
+  relatedProject?: string;  // project slug
+  link?: { label: string; href: string };  // e.g. GitHub
+  placeholder?: boolean;
+}
+```
+One file `content/lab.ts` with the entry list (entries are small; one file is easier to maintain than one per entry).
+
+### G4. Candidate first entries (need Mikel's material and OK)
+
+| Candidate | Type | Source | Status |
+|---|---|---|---|
+| This website: building the motion system (GSAP, Lenis) | Code | This repo | Ready to write; screenshot of the process grid |
+| Caira: brand extension of an AI camera brand into food (5P strategy) | Early work / Note | `P2_5P_Caira_Txostena.pdf` | Was "archive" (D-07): **OK to show here?** |
+| PBL02: DC-motor product for reduced mobility, quick prototypes | Early work | `PBL02_T02D_Memoria.pdf` | Was "archive" (D-07): **OK to show here?** |
+| Sketch pages from the flagship projects (not used in the case studies) | Sketch | Mikel's originals | Waiting on files |
+| Alternate renders / material studies (KeyShot, Blender) | Render study | Mikel's originals | Waiting on files |
+| Ibili "Jario" bottle | — | — | **Not shown** until Ibili launches (D-15) |
+
+For the approval build, the page ships with **placeholder frames** (as on the rest of the site) plus the one real entry that exists today (this website).
+
+### G5. Navigation, SEO
+- Nav: **Work · Lab · About** + copy email. "Lab" is marked current on `/lab`.
+- `<title>` "Lab — Explorations · Mikel Arnao"; in the sitemap; lightbox entries aren't separate URLs for search engines (`?entry=` is canonicalised to `/lab`).
