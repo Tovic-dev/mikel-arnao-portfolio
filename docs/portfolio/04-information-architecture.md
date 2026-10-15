@@ -95,3 +95,8 @@ M. ARNAO — Product Designer & Design Engineer          Work   About   Contact
 - Slugs are lowercase, hyphenated, and say what the project is: `seat-ateca-mirror`, not `pbl04`.
 - Course codes (PBL3, PBL4…) appear only in the metadata block, never as titles.
 - Page titles: `Ardura — Smart self-sufficient plant pot · Mikel Arnao`.
+
+## Revision (2026-10-16, D-38–D-40) — proposed
+- **New route `/work`**: all projects with filters (layout A "Spec index", spec in `05` Part D). Replaces "home as index" and removes the `/work → /#work` redirect.
+- **Short entries** at `/work/[slug]` alongside case studies (`05` Part E).
+- **Navigation:** Work (`/work`) · Lab (`/lab`, to be specified) · About, plus a compact copy-email button. The Contact link is removed; contact stays in the footer.

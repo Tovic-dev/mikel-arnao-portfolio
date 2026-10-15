@@ -104,3 +104,16 @@ Principle: one component per meaningful responsibility. Decorative details (hair
 
 - **Client components:** `NavLink`, `CopyEmailButton`, `IconButton`, `HeroSequence`, `ProcessGrid`, `SectionIndex`, `CompareSlider`, the `AnnotatedImage` and `Chart` draw layers, `Reveal`, `RevealHeading`. That is **11**, all small. Everything else renders on the server.
 - **Total:** ~45 components. None comes from an external UI library.
+
+## Additions for the Work page (2026-10-16, proposed — `05` Part D/E)
+
+| Component | Type | Purpose |
+|---|---|---|
+| `WorkIndex` | C | Owns filter + view state (synced to the URL), renders list or grid, runs Flip on changes |
+| `WorkFilters` | C (inside `WorkIndex`) | Field / Context / Year toggle groups, counts, result line, Clear; `<details>` on phones |
+| `ViewToggle` | C | List / Grid segmented control |
+| `IndexRow` | S | One project row (link), columns + sr-only labels, mobile thumbnail |
+| `IndexCard` | S | Grid card (link) |
+| `HoverPreview` | C | Floating 3:2 preview following the pointer (desktop, motion allowed) |
+| `ShortEntryBody` | S | "About the project" paragraphs + optional media for short entries |
+| `lib/flip.ts` | C module | Dynamic import + registration of GSAP Flip, used only on `/work` |
