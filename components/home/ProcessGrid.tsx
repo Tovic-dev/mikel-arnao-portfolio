@@ -70,42 +70,7 @@ export function ProcessGrid({
         );
         const [left = [], middle = [], right = []] = columns;
 
-        // Centre the heading vertically inside the content block until the grid opens.
-        const titleOffset = () =>
-          ((content.offsetHeight - heading.offsetHeight) /
-            2 /
-            content.offsetHeight) *
-          100;
-
-        gsap.set(extras, { autoAlpha: 0 });
-        gsap.set(heading, { yPercent: titleOffset });
         if (cta) cta.tabIndex = -1;
-
-        let shown = false;
-        const toggleContent = (visible: boolean) => {
-          if (visible === shown) return;
-          shown = visible;
-          if (cta) cta.tabIndex = visible ? 0 : -1;
-          gsap
-            // "auto": only stop tweens on the same properties, so the heading fade-in
-            // (opacity) is never killed half-way by this move (yPercent).
-            .timeline({ defaults: { overwrite: "auto" } })
-            .to(heading, {
-              yPercent: visible ? 0 : titleOffset(),
-              opacity: 1,
-              duration: 0.7,
-              ease: "power2.inOut",
-            })
-            .to(
-              extras,
-              {
-                autoAlpha: visible ? 1 : 0,
-                duration: 0.4,
-                ease: "power1.inOut",
-              },
-              visible ? "-=0.6" : "<",
-            );
-        };
 
         const distance = () => {
           const wh = window.innerHeight;
@@ -175,24 +140,27 @@ export function ProcessGrid({
               ease: "power1.inOut",
             },
             "-=0.5",
+          )
+          // Text appears while the tiles spread and lands with them (t = 1).
+          .fromTo(
+            heading,
+            { autoAlpha: 0, y: 40 },
+            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            0.4,
+          )
+          .fromTo(
+            extras,
+            { autoAlpha: 0, y: 16 },
+            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            0.4,
           );
 
         tl.add(reveal)
           .add(zoom, "-=0.6")
-          .add(() => toggleContent(tl.scrollTrigger?.direction === 1), "-=0.32")
+          .add(() => {
+            if (cta) cta.tabIndex = tl.scrollTrigger?.direction === 1 ? 0 : -1;
+          })
           .to({}, { duration: 0.5 });
-
-        // Heading fades in as the dark section rises over the hero (as in the original).
-        gsap.from(heading, {
-          opacity: 0,
-          duration: 0.7,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 57%",
-            toggleActions: "play none none reset",
-          },
-        });
 
         // Curtain out: the featured projects slide over the stage, which recedes.
         const next = section.nextElementSibling as HTMLElement | null;
