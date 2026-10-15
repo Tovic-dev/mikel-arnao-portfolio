@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { CaseSection } from "@/components/project/CaseSection";
 import { PrevNextProject } from "@/components/project/PrevNextProject";
 import { ProjectIntro } from "@/components/project/ProjectIntro";
+import { CaseStudyEntrance } from "@/components/project/CaseStudyEntrance";
 import { SectionIndex } from "@/components/project/SectionIndex";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
 
@@ -53,10 +54,13 @@ export default async function ProjectPage({
 
   return (
     <article>
+      <CaseStudyEntrance
+        label={`${String(project.order).padStart(2, "0")} / 04 — ${project.title}`}
+      />
       <ProjectIntro project={project} index={index} />
 
       {/* Hero render: the full-bleed moment (05 B1) */}
-      <figure className="relative z-(--z-raised) bg-raised">
+      <figure data-enter="hero" className="relative z-(--z-raised) bg-raised">
         <Image
           src={project.hero.src}
           alt={project.hero.alt}

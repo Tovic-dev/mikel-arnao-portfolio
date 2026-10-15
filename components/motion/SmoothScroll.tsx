@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { markAppReady } from "@/lib/navigation";
 import {
   gsap,
   MOTION_FORCED,
@@ -19,6 +20,8 @@ export function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // From now on, page changes are in-site navigation (CaseStudyEntrance).
+    markAppReady();
     if (!smoothScrollActive()) return;
 
     const instance = new Lenis({

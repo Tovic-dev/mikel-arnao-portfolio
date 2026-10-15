@@ -15,16 +15,24 @@ export function ProjectIntro({
   return (
     <header className="container-page page-grid gap-y-8 pt-10 pb-12 sm:pt-14 lg:pt-16">
       <div className="col-span-full lg:col-span-6">
-        <p className="label text-ink-3">
+        <p data-enter="intro" className="label text-ink-3">
           {number} / 04 · {project.productName}
         </p>
-        <h1 className="mt-4 text-h1">{project.title}</h1>
-        <p className="mt-6 max-w-[40ch] text-lead text-ink-2">
+        <h1 data-enter="intro" className="mt-4 text-h1">
+          {project.title}
+        </h1>
+        <p
+          data-enter="intro"
+          className="mt-6 max-w-[40ch] text-lead text-ink-2"
+        >
           {project.summary}
         </p>
       </div>
 
-      <dl className="col-span-full self-end border-b border-rule text-small lg:col-span-5 lg:col-start-8">
+      <dl
+        data-enter="intro"
+        className="col-span-full self-end border-b border-rule text-small lg:col-span-5 lg:col-start-8"
+      >
         <div className="grid grid-cols-[6.5rem_1fr] gap-4 border-t border-rule-strong py-3">
           <dt className="pt-0.5 label text-ink-3">My role</dt>
           <dd>
@@ -49,7 +57,7 @@ export function ProjectIntro({
         <Row label="Tools" value={project.tools.join(" · ")} />
       </dl>
 
-      <div className="col-span-full lg:hidden">
+      <div data-enter="intro" className="col-span-full lg:hidden">
         <SectionIndex items={index} variant="details" />
       </div>
     </header>
