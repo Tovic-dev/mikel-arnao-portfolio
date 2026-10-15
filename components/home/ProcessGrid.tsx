@@ -155,18 +155,18 @@ export function ProcessGrid({
             },
             "-=0.5",
           )
-          // Text appears while the tiles spread and lands with them (t = 1).
+          // Text starts in the last quarter of the spread and lands with the tiles (t = 1).
           .fromTo(
             heading,
             { autoAlpha: 0, y: 40 },
-            { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
-            0.6,
+            { autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out" },
+            0.75,
           )
           .fromTo(
             extras,
             { autoAlpha: 0, y: 16 },
-            { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
-            0.6,
+            { autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out" },
+            0.75,
           );
 
         tl.add(reveal)
