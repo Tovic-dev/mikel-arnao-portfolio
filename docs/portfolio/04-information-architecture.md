@@ -1,6 +1,6 @@
 # Information Architecture
 
-Status: **proposed** (2026-10-15) · Depends on: `01-personal-brand.md`, `02-creative-direction.md` (A approved), `09-content-and-assets.md`
+Status: **approved with contact details** (2026-10-15; domain `mikelarnao.com`) · Depends on: `01-personal-brand.md`, `02-creative-direction.md` (A approved), `09-content-and-assets.md`
 
 ## 1. Principles
 
@@ -18,8 +18,7 @@ Status: **proposed** (2026-10-15) · Depends on: `01-personal-brand.md`, `02-cre
 | `/work/seat-ateca-mirror` | Case study 02 | |
 | `/work/mercedes-vent-lca` | Case study 03 | |
 | `/work/orbea-cycle-dry` | Case study 04 | |
-| `/about` | Full profile: education, how I work, tools (honest levels), interests, CV | Admissions panels read this |
-| `/cv.pdf` | Downloadable CV (static file) | Needs Mikel's current CV |
+| `/about` | Full profile: education, how I work, tools (per project), interests. Replaces a CV (no CV download, D-18) | Admissions panels read this |
 | `/sitemap.xml`, `/robots.txt` | SEO | Generated |
 | 404 | Short message, links to the 4 projects | |
 
@@ -45,8 +44,8 @@ M. ARNAO — Product Designer & Design Engineer          Work   About   Contact
 - **Current page** is marked with the accent colour and `aria-current="page"`.
 
 ### Footer (every page) = contact block, `id="contact"`
-- Email (with a copy-to-clipboard button: recruiters often paste addresses into an ATS)
-- LinkedIn · CV (PDF)
+- Email arnaomikel10@gmail.com (with a copy-to-clipboard button: recruiters often paste addresses into an ATS)
+- LinkedIn: https://www.linkedin.com/in/mikelarnao
 - Location: Basque Country, Spain
 - © year · "Designing what comes next." as the sign-off line (from `01-personal-brand.md`)
 
@@ -59,8 +58,8 @@ M. ARNAO — Product Designer & Design Engineer          Work   About   Contact
 
 | Feature | Decision | Reason |
 |---|---|---|
-| Availability label (e.g. "Open to internships · 2027") | **Yes, if accurate.** Shown under the name in the hero | Tells recruiters you're available. Wording is Mikel's call (D-16) |
-| Downloadable CV | **Yes** | Admissions panels and recruiters expect it |
+| Availability label | **Yes**: "Open to internships and master's programmes · 2027" (D-16, approved) | Tells recruiters you're available |
+| Downloadable CV | **No** (Mikel, D-18) | `/about` carries education, tools and roles instead; the application itself includes his CV |
 | Project filter by discipline | **No** | 4 projects. Discipline tags appear on cards instead |
 | Theme switch / dark mode | **No** | Direction A is a light print-like system; dark mode doubles the QA |
 | Scroll progress bar | **No** | The case-study section index already shows position |
@@ -71,7 +70,7 @@ M. ARNAO — Product Designer & Design Engineer          Work   About   Contact
 
 ## 5. User journeys
 
-**Recruiter, ~30 seconds.** Lands on `/`. Reads name, role, headline and availability. Scans the 4 project cards (title, one-line summary, discipline tags, year). Opens one case study and reads the role block and hero render. Leaves with an email or the CV.
+**Recruiter, ~30 seconds.** Lands on `/`. Reads name, role, headline and availability. Scans the 4 project cards (title, one-line summary, discipline tags, year). Opens one case study and reads the role block and hero render. Leaves with the email or LinkedIn.
 → *The role block and hero image must be visible without scrolling on the case-study page.*
 
 **Admissions panel, 5–15 minutes.** Arrives from the link in the application. Reads `/about` (education, motivation, how I work). Reads 2–3 case studies in depth: research, decisions, reflection.

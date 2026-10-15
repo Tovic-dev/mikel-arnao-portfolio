@@ -34,6 +34,7 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 ### 1. Ardura — smart self-sufficient plant pot
 - **Date / course:** January 2026 · 3rd year, PBL5 · *Verified*
 - **Team:** Mikel Arnao, Danel Iturbe, Egoitz Fernandez, Mikel Martin, Maria Martinez · *Verified*
+- **Tools:** SolidWorks, KeyShot, Blender · *Stated*
 - **Scope:** "Biophilic paradox", energy autonomy, circular sustainability, SDGs, DEPEST, market gap, customer journey, personas, brief, sketches, sensors · *Verified*
 - **Mikel led:** the entire **development phase, including CAD**, except the product and project panels; **final renders** · *Stated*
 - **Recognition:** submitted to an iF design competition. **Participation only, no award** · *Stated*. Confirm the exact competition name before mentioning it.
@@ -42,6 +43,7 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 ### 2. SEAT Ateca side mirror
 - **Date / course:** 16 June 2025 · 2nd year, PBL4 · *Verified*
 - **Team:** Ainhoa Alonso, Mikel Arnao, Maren Leston, Ane Pelayo, Garazi Portillo · *Verified*
+- **Tools:** SolidWorks, Siemens NX, KeyShot, Blender · *Stated*
 - **Collaboration:** carried out **through the company Maier** · *Stated*. Not stated in the report. Get a document or a confirmed wording before naming Maier publicly.
 - **Scope:** market/product analysis, morphology, electrical study, stiffness specs, emotional design, regulations, archetypes, storyboard, brief, specs, prototyping; SolidWorks · *Verified*
 - **Mikel led** · *Stated*:
@@ -54,17 +56,19 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 ### 3. Mercedes V-Class A/C vent: eco-design and LCA
 - **Date / course:** 18 November 2025 · 3rd year, Environmental Aspects · *Verified*
 - **Team:** Aimar Arauzo, Mikel Arnao, Ander Martín · *Verified*
+- **Tools:** IHOBE "Climate and circularity calculator" for the LCA · *Verified* (named in the report) **Assets:** photo of the original vent (hero) and Mikel's LCA charts · *Stated*
 - **Scope:** analysis-only brief (no development phase was required). Life-cycle inventory, MET matrix, LCA hotspots, 3 redesign actions (LED optimisation, chrome removal, material rationalisation), weighted selection, final concept · *Verified*
 - **Mikel led** · *Stated*:
   - **Life-cycle analysis (LCA)**
   - **Improvement goals and idea generation**
   - **Evaluation of environmental improvements**
-- **No renders.** Visuals will be diagrams and charts built from the report's data, quoted exactly as reported.
+- **No renders.** Hero = photo of the original vent. Charts are redrawn in the site style from Mikel's LCA charts and the report data, quoted exactly as reported.
 - **Collaboration:** none stated. Treat as academic.
 
 ### 4. Orbea bicycle rack — "Cycle Dry"
 - **Date / course:** deadline 28 January 2025 · 2nd year, PBL3 · *Verified*
 - **Team:** Ekain Ardanza, Mikel Arnao, Leire Arias, Laura Cuesta, Naroa Galdos · *Verified*
+- **Tools:** SolidWorks, KeyShot, Blender · *Stated*
 - **Product name:** CYCLE DRY (on the report cover) · *Verified*
 - **Collaboration:** real project with **Orbea** · *Stated*. The report says the university set a brief to redesign an Orbea rack (MTB Hardtail rack, €124.99, 14 parts).
 - **Scope:** product analysis (patents: Ortlieb QL3.1, MIK HD/Standard; MIG welding, laser cutting), **material testing** (density, Vickers hardness, CES), market (spider chart, positioning map), user analysis, brief, brainstorming, 4-step sketches, secret voting, moodboards, preliminary designs, concept selection, components, **lift-and-rotate hanger mechanism**, specs document, manufacturing process, poster · *Verified*
@@ -90,6 +94,6 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 1. **Original renders, CAD screenshots and sketches**: Mikel has them. Copy into `projects info/<project>/` (or `assets-raw/`) before Phase 6.
 2. **Maier** (SEAT) and **Orbea** relationship wording: a line from a brief, email or university page, or an agreed phrasing.
 3. **Ibili "Jario"**: embargoed until launch (D-15).
-4. **Tools per flagship** (SolidWorks / NX / KeyShot / Blender / Adobe).
+4. ~~Tools per flagship~~: recorded in §3. Adobe applies to non-flagship dossiers (to specify later).
 5. **Permission and credit** from teammates whose work appears in images.
 6. **English copy**: three of the four flagship sources are in Spanish. Case-study text will be newly written.

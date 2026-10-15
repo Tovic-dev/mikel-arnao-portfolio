@@ -88,7 +88,7 @@ Numbering follows the design process, so the order itself tells the "concept to 
 |---|---|---|---|
 | **01 Ardura** | Annotated exploded view or CAD; CAD→render compare; persona and customer-journey summary | Final render (Mikel) | Don't claim energy-autonomy performance unless the report states results and method. iF: "submitted" only, if named exactly |
 | **02 SEAT Ateca mirror** | Regulations spec table (Mikel); **circuit redesign diagram** (Mikel); materials spec table (Mikel); full-bleed render | Final render (Mikel) | "Carried out with Maier for the SEAT Ateca". 3D modelling credited to teammates |
-| **03 Mercedes vent LCA** | **Hotspot chart by life-cycle stage**; MET matrix; weighted-selection matrix; three improvement actions compared | **Needs a decision (D-17):** photo or render of the existing vent, or a large chart as the hero. No final design exists, so no "Result" render | Analysis-only brief: section 05 becomes "Improvement concepts" and 07 "Evaluation". LCA numbers exactly as reported |
+| **03 Mercedes vent LCA** | **Hotspot chart by life-cycle stage**; MET matrix; weighted-selection matrix; three improvement actions compared | **Photo of the original vent** (D-17). Mikel's existing LCA charts are the source for the redrawn charts | Analysis-only brief: section 05 becomes "Improvement concepts" and 07 "Evaluation". LCA numbers exactly as reported |
 | **04 Orbea "Cycle Dry"** | Material-testing table (density, Vickers); 4-step sketches (Mikel + colleague); lift-and-rotate **step sequence**; manufacturing process steps (Mikel); poster | Final render (Mikel) | "Academic project in collaboration with Orbea". Preliminary designs credited to teammates |
 
 ### B5. Content data model
@@ -111,7 +111,7 @@ Planning only. The storage format (MDX vs typed files) is decided in Phase 5. Fi
 | `collaboration` | string? | Exact approved wording only (D-13) |
 | `team` | string[] | Teammates' full names |
 | `myRole` | string[] | 2–5 short "Led …" lines |
-| `tools` | string[] | Only tools actually used (to confirm per project) |
+| `tools` | string[] | Only tools actually used: see `09-content-and-assets.md` §3 |
 | `disciplines` | enum[] | `product-design`, `cad`, `engineering`, `sustainability`, `research`, `ux` |
 | `recognition` | string? | Only if evidenced |
 | `hero` | Media | Required |

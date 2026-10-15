@@ -20,6 +20,11 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-13 | Orbea and Maier allow their names to be used publicly (Mikel). Wording: "Academic project in collaboration with Orbea" / "Carried out with Maier for the SEAT Ateca" | 2026-10-15 |
 | D-04 | Creative direction **A "Spec Sheet"**, plus one full-bleed render moment per case study (from B) and CAD→render transitions (from C) | 2026-10-15 |
 | D-15 | Ibili "Jario": **embargoed**. Ibili 2026 competition for the graphics of the nature-inspired "Hydrate & Reuse" bottle line; design unreleased, so copyright blocks publication. Do not show the design or name the result until Ibili launches the line | 2026-10-15 |
+| D-16 | Availability line: "Open to internships and master's programmes · 2027" | 2026-10-15 |
+| D-17 | Mercedes hero = photo of the original vent; LCA charts come from Mikel's existing charts | 2026-10-15 |
+| D-18 | Contact: arnaomikel10@gmail.com · linkedin.com/in/mikelarnao. **No CV download** | 2026-10-15 |
+| D-19 | Domain **mikelarnao.com** (already owned by Mikel) | 2026-10-15 |
+| D-20 | Tools: SolidWorks (Ardura, SEAT, Orbea) · Siemens NX (SEAT) · KeyShot + Blender (Ardura, SEAT, Orbea) · IHOBE "Climate and circularity calculator" (Mercedes LCA). Adobe only on non-flagship dossiers | 2026-10-15 |
 
 ## Round 3 — open
 
@@ -27,12 +32,9 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 |---|---|---|---|
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
-| D-16 | Availability label in the hero | E.g. "Open to internships and master's programmes · 2027". Mikel to give the accurate wording | OPEN |
-| D-17 | Mercedes case-study hero (no final render exists) | Photo or render of the existing vent if available, otherwise the hotspot chart as hero | OPEN |
-| D-18 | Contact details: public email, LinkedIn URL, current CV PDF | Needed for footer and `/cv.pdf` | OPEN |
-| D-19 | Domain name | e.g. `mikelarnao.com`. Check availability; buy before launch | OPEN |
-| D-20 | Tools used per flagship project | Fill `tools` field honestly | OPEN |
 | D-21 | IA: home as index, no `/work` page, no `/contact` page, no burger, static header, sticky section index in case studies | See `04-information-architecture.md` | RECOMMENDED |
+| D-22 | Motion: GSAP (core + ScrollTrigger, SplitText candidate) for reveals and the hero; CSS for hover/state; **no Lenis**, no pinning, no route transitions in MVP | See `07-motion-specification.md`. Engine confirmed in Phase 5 against CSS scroll-driven animations | RECOMMENDED |
+| D-23 | Git commit email is `arnaomikel10@email.com` (domain "email.com") while the contact email is `@gmail.com` | Probably a typo in your git config. Fix with `git config --global user.email` if so | OPEN |
 | D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
 
 ## Low-impact decisions taken (reversible)
