@@ -54,9 +54,7 @@ export default async function ProjectPage({
 
   return (
     <article>
-      <CaseStudyEntrance
-        label={`${String(project.order).padStart(2, "0")} / 04 — ${project.title}`}
-      />
+      <CaseStudyEntrance />
       <ProjectIntro project={project} index={index} />
 
       {/* Hero render: the full-bleed moment (05 B1) */}

@@ -7,7 +7,7 @@ export function WorkList({ projects }: { projects: Project[] }) {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="relative z-2 scroll-mt-4 bg-paper"
+      className="relative z-2 bg-paper"
     >
       <div className="container-page pt-16 pb-(--section-space) lg:pt-24">
         <h2 id="work-title" className="sr-only">

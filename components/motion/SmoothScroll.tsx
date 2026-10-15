@@ -4,7 +4,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { markAppReady } from "@/lib/navigation";
+import { setLenis } from "@/lib/scroll";
 import {
   gsap,
   MOTION_FORCED,
@@ -20,8 +20,6 @@ export function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // From now on, page changes are in-site navigation (CaseStudyEntrance).
-    markAppReady();
     if (!smoothScrollActive()) return;
 
     const instance = new Lenis({
@@ -32,6 +30,7 @@ export function SmoothScroll() {
       respectReducedMotion: !MOTION_FORCED,
     });
     lenis.current = instance;
+    setLenis(instance);
     instance.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => instance.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -42,6 +41,7 @@ export function SmoothScroll() {
       gsap.ticker.lagSmoothing(500, 33);
       instance.destroy();
       lenis.current = null;
+      setLenis(null);
     };
   }, []);
 

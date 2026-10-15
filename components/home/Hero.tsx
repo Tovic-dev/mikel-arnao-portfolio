@@ -3,6 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { placeholders } from "@/content/projects/_placeholders";
 import { site } from "@/content/site";
 import type { Annotation } from "@/content/types";
+import { JumpLink } from "@/components/ui/JumpLink";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
 import { HeroSequence } from "./HeroSequence";
 
@@ -140,18 +141,20 @@ export function Hero() {
           </div>
 
           <div className="flex items-end justify-between gap-6">
-            <a
-              href="#work"
-              data-hero="meta"
-              className="group inline-flex min-h-12 items-center gap-2 border border-ink px-5 label transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
-            >
-              See selected work
-              <ArrowDown
-                aria-hidden="true"
-                className="size-4 transition-transform duration-(--dur-base) ease-standard group-hover:translate-y-0.5"
-                strokeWidth={1.5}
-              />
-            </a>
+            <div data-hero="meta">
+              {/* Jumps past the sticky process grid with a short fade (Checkpoint A). */}
+              <JumpLink
+                targetId="work"
+                className="group inline-flex min-h-12 items-center gap-2 border border-ink px-5 label transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
+              >
+                See selected work
+                <ArrowDown
+                  aria-hidden="true"
+                  className="size-4 transition-transform duration-(--dur-base) ease-standard group-hover:translate-y-0.5"
+                  strokeWidth={1.5}
+                />
+              </JumpLink>
+            </div>
             <div
               data-hero="meta"
               aria-hidden="true"

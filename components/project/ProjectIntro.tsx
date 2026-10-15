@@ -15,10 +15,10 @@ export function ProjectIntro({
   return (
     <header className="container-page page-grid gap-y-8 pt-10 pb-12 sm:pt-14 lg:pt-16">
       <div className="col-span-full lg:col-span-6">
-        <p data-enter="intro" className="label text-ink-3">
+        <p data-enter="label" className="label text-ink-3">
           {number} / 04 · {project.productName}
         </p>
-        <h1 data-enter="intro" className="mt-4 text-h1">
+        <h1 data-enter="title" className="mt-4 text-h1">
           {project.title}
         </h1>
         <p
