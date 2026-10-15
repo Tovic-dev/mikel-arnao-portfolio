@@ -50,11 +50,26 @@ function svg({ w, h, kind, label }) {
 const files = [
   { name: "hero-render", w: 2400, h: 1800, kind: "render" },
   ...["ardura", "seat", "mercedes", "orbea"].flatMap((p) => [
-    { name: `${p}-card`, w: 2100, h: 1400, kind: p === "mercedes" ? "photo" : "render" },
-    { name: `${p}-hero`, w: 2560, h: 1440, kind: p === "mercedes" ? "photo" : "render" },
+    {
+      name: `${p}-card`,
+      w: 2100,
+      h: 1400,
+      kind: p === "mercedes" ? "photo" : "render",
+    },
+    {
+      name: `${p}-hero`,
+      w: 2560,
+      h: 1440,
+      kind: p === "mercedes" ? "photo" : "render",
+    },
     { name: `${p}-sketch`, w: 1200, h: 1200, kind: "sketch" },
     { name: `${p}-cad`, w: 1200, h: 1200, kind: "cad" },
-    { name: `${p}-render`, w: 1200, h: 1200, kind: p === "mercedes" ? "chart" : "render" },
+    {
+      name: `${p}-render`,
+      w: 1200,
+      h: 1200,
+      kind: p === "mercedes" ? "chart" : "render",
+    },
     { name: `${p}-figure-wide`, w: 2400, h: 1350, kind: "cad" },
     { name: `${p}-figure`, w: 1800, h: 1200, kind: "render" },
     { name: `${p}-figure-portrait`, w: 1200, h: 1500, kind: "sketch" },
@@ -69,4 +84,6 @@ for (const f of files) {
     .jpeg({ quality: 80, mozjpeg: true })
     .toFile(path.join(OUT, `${f.name}.jpg`));
 }
-console.log(`Generated ${files.length} placeholders in ${path.relative(process.cwd(), OUT)}`);
+console.log(
+  `Generated ${files.length} placeholders in ${path.relative(process.cwd(), OUT)}`,
+);
