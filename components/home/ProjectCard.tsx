@@ -26,7 +26,6 @@ export function ProjectCard({ project }: { project: Project }) {
       <Link
         href={`/work/${project.slug}` as Route}
         className="group mt-4 page-grid gap-y-6"
-        aria-label={`${project.title}: ${project.productName ?? project.summary}. View case study`}
       >
         <Reveal variant="clip" className="col-span-full lg:col-span-7">
           <div className="relative aspect-3/2 overflow-hidden bg-raised">

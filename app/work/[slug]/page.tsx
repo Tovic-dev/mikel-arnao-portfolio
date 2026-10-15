@@ -58,11 +58,15 @@ export default async function ProjectPage({
       <ProjectIntro project={project} index={index} />
 
       {/* Hero render: the full-bleed moment (05 B1) */}
-      <figure data-enter="hero" className="relative z-(--z-raised) bg-raised">
+      <figure
+        data-enter="hero"
+        className="load-clip relative z-(--z-raised) bg-raised"
+      >
         <Image
           src={project.hero.src}
           alt={project.hero.alt}
-          preload
+          loading="eager"
+          fetchPriority="high"
           placeholder="blur"
           quality={85}
           sizes="100vw"

@@ -60,12 +60,13 @@ export function Hero() {
             <figure className="col-span-full lg:col-span-6 lg:self-center">
               <div
                 data-hero="image"
-                className="relative aspect-4/3 overflow-hidden bg-raised"
+                className="load-clip relative aspect-4/3 overflow-hidden bg-raised"
               >
                 <Image
                   src={heroImage.src}
                   alt={heroImage.alt}
-                  preload
+                  loading="eager"
+                  fetchPriority="high"
                   placeholder="blur"
                   quality={85}
                   sizes="(min-width: 64rem) 50vw, 100vw"

@@ -48,17 +48,9 @@ export function CaseStudyEntrance() {
         q("[data-enter=intro]"),
         { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.07 },
         0.2,
-      ).fromTo(
-        q("[data-enter=hero]"),
-        { clipPath: "inset(100% 0% 0% 0%)" },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.9,
-          ease: "power3.inOut",
-          clearProps: "clipPath",
-        },
-        0.25,
       );
+      // The hero render's clip reveal is CSS (.load-clip): it starts at first
+      // paint, so it doesn't delay LCP.
     });
   });
 

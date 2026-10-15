@@ -37,16 +37,8 @@ export function HeroSequence({ children }: { children: ReactNode }) {
       mm.add(MOTION_OK, () => {
         // Load sequence
         const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-        tl.fromTo(
-          q('[data-hero="image"]'),
-          { clipPath: "inset(100% 0% 0% 0%)" },
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 0.9,
-            ease: "power3.inOut",
-          },
-          0.05,
-        );
+        // The hero render's clip reveal is CSS (.load-clip) so it starts at first
+        // paint instead of after hydration (LCP, Phase 8.2 Lighthouse baseline).
 
         const title = q('[data-hero="title"]')[0];
         if (title) {
