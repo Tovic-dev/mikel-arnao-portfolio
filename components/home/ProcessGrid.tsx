@@ -85,6 +85,16 @@ export function ProcessGrid({
             end: () => `+=${section.offsetHeight - 2 * window.innerHeight}`,
             scrub: scrubAmount(),
             invalidateOnRefresh: true,
+            // After a refresh invalidates the timeline, GSAP only redraws tweens
+            // that start at t = 0 (the first tile of each stagger); the rest keep
+            // their end position. Seek to the end and back so every tween draws
+            // its correct state for the current scroll position.
+            onRefresh: (self) => {
+              const anim = self.animation;
+              if (!anim) return;
+              const p = anim.progress();
+              anim.progress(1, true).progress(p, true);
+            },
             onToggle: (self) => {
               gsap.set(items, {
                 willChange: self.isActive ? "transform" : "auto",
@@ -97,12 +107,16 @@ export function ProcessGrid({
         const reveal = gsap.timeline();
         columns.forEach((column, c) => {
           const fromTop = c % 2 === 0;
-          reveal.from(
+          // fromTo + immediateRender: every tile (not just the first of the
+          // stagger) starts off-screen, whatever the timeline renders first.
+          reveal.fromTo(
             column,
+            { y: () => distance() * (fromTop ? -1 : 1) },
             {
-              y: () => distance() * (fromTop ? -1 : 1),
+              y: 0,
               stagger: { each: 0.06, from: fromTop ? "end" : "start" },
               ease: "power1.inOut",
+              immediateRender: true,
             },
             "reveal",
           );
@@ -145,14 +159,14 @@ export function ProcessGrid({
           .fromTo(
             heading,
             { autoAlpha: 0, y: 40 },
-            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
-            0.4,
+            { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
+            0.6,
           )
           .fromTo(
             extras,
             { autoAlpha: 0, y: 16 },
-            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
-            0.4,
+            { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
+            0.6,
           );
 
         tl.add(reveal)
