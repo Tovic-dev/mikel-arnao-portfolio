@@ -25,6 +25,9 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-18 | Contact: arnaomikel10@gmail.com · linkedin.com/in/mikelarnao. **No CV download** | 2026-10-15 |
 | D-19 | Domain **mikelarnao.com** is owned but **not connected for now** (Mikel). Launch on the Vercel `*.vercel.app` URL; `SITE_URL` env var makes the later switch a one-line change | 2026-10-15 |
 | D-20 | Tools: SolidWorks (Ardura, SEAT, Orbea) · Siemens NX (SEAT) · KeyShot + Blender (Ardura, SEAT, Orbea) · IHOBE "Climate and circularity calculator" (Mercedes LCA). Adobe only on non-flagship dossiers | 2026-10-15 |
+| D-22 | Motion engine: GSAP (core + ScrollTrigger + SplitText) + CSS for hover/state; no Lenis, no pinning, no route transitions in MVP | 2026-10-15 |
+| D-24 | **Stack approved** as in `08-technical-architecture.md` (Next.js 16.4.x ≥ 16.4.1 static, TS ^5.9 strict, Tailwind v4, GSAP, typed content files, Vercel Hobby, pnpm) | 2026-10-15 |
+| D-25 | Deployment: **private GitHub repo connected to Vercel** (preview per push, `main` = production) | 2026-10-15 |
 
 ## Round 3 — open
 
@@ -33,9 +36,12 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
 | D-21 | IA: home as index, no `/work` page, no `/contact` page, no burger, static header, sticky section index in case studies | See `04-information-architecture.md` | RECOMMENDED |
-| D-22 | Motion: GSAP (core + ScrollTrigger + SplitText) for reveals and the hero; CSS for hover/state; **no Lenis**, no pinning, no route transitions in MVP | Confirmed in Phase 5: licence free incl. SplitText; CSS scroll timelines not in stable Firefox (`08` §5) | RECOMMENDED |
-| D-24 | Stack: Next.js 16.4.x (≥ 16.4.1, security) static App Router · TypeScript ^5.9 strict · Tailwind v4 · GSAP · typed TS content files · next/image · next/font · Vercel Hobby · pnpm. No CMS, no component library, no 3D, no analytics in MVP | See `08-technical-architecture.md` | RECOMMENDED |
-| D-25 | Deployment workflow | Private GitHub repo + Vercel Git integration (preview URL per push). Needs a GitHub account; alternative is Vercel CLI from this PC | OPEN |
+| D-26 | Typeface pair | Geist + Geist Mono (samples shown 2026-10-15; `10` §2) | RECOMMENDED |
+| D-27 | Accent colour | Signal orange: line `#E04800`, text `#B83A00` (`10` §1) | RECOMMENDED |
+| D-28 | Education facts for `/about`: start year, current year, expected graduation | Needed for `/about` and JSON-LD | OPEN |
+| D-29 | Languages and levels | For `/about` | OPEN |
+| D-30 | Hero H1: headline "From concept to specification." (name in header) vs name as H1 | Headline as H1 | RECOMMENDED |
+| D-31 | Portrait photo on `/about` (and optionally the homepage about section) | Optional; recommended for admissions. Neutral background, natural light | OPEN |
 | D-23 | Git commit email is `arnaomikel10@email.com` (domain "email.com") while the contact email is `@gmail.com` | Probably a typo in your git config. Fix with `git config --global user.email` if so | OPEN |
 | D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
 

@@ -1,6 +1,6 @@
 # Technical Architecture
 
-Status: **proposed** (2026-10-15) · Depends on: `04`, `05`, `07`
+Status: **APPROVED** (2026-10-15; deployment via private GitHub repo + Vercel) · Depends on: `04`, `05`, `07`
 Versions were checked on 2026-10-15 with `npm view` and official sources (listed in §11). They are re-checked on the day implementation starts.
 
 ## 1. Summary

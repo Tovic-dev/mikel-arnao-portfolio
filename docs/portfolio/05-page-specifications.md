@@ -1,11 +1,93 @@
 # Page Specifications
 
-Status: **Part B (case-study template) proposed** (2026-10-15). Part A (homepage) and Part C (/about, 404) follow after the motion spec, because their behaviour depends on it.
+Status: **Parts A, B, C proposed** (2026-10-15). Copy is draft editorial text; facts trace to `09` and `13`.
 
 ---
 
-## Part A — Homepage
-*Pending. Section order is fixed in `04-information-architecture.md` §6.*
+## Part A — Homepage (`/`)
+
+Copy below is **proposed** editorial text (label from `09`). Facts in it come from `09-content-and-assets.md` and the decision log.
+
+### A0. Narrative flow
+**Who** (hero) → **proof** (4 projects) → **how** (approach, each step pointing back to a project) → **person** (about) → **contact**.
+A recruiter gets identity and the first project inside the first viewport and a half. An admissions reader gets method and motivation without leaving the page. Each section answers the question the previous one raises.
+
+### A1. Header
+| | |
+|---|---|
+| Objective | Identity and wayfinding on every page |
+| Content | `MIKEL ARNAO` (wordmark, links to `/`) · `Work` · `About` · `Contact` |
+| Layout | Desktop: one row, wordmark left, links right, 24 px vertical padding, hairline below. Mobile: wordmark row + links row (mono `text-label`) |
+| Components | `Header`, `NavLink` |
+| Interaction | G1/G2; current page in accent. Static (scrolls away) |
+| A11y | `<header>` + `<nav aria-label="Main">`; "Skip to content" link as the first focusable element |
+
+### A2. Hero
+| | |
+|---|---|
+| Objective | Who, what and why it's credible, in under 10 seconds |
+| Takeaway | "Design engineer student who takes products from concept to specification, and here's one." |
+| Content | Label: `PRODUCT DESIGNER & DESIGN ENGINEER` · availability label `OPEN TO INTERNSHIPS AND MASTER'S PROGRAMMES · 2027` · H1 (display): **From concept to specification.** · Lead (supporting statement from `01` §3) · Secondary CTA `See selected work ↓` (→ `#work`) · Annotated Ardura render with 2–3 callouts, e.g. `CAD + DEVELOPMENT · LED BY ME`, `FINAL RENDER · LED BY ME` (exact callouts depend on the render) |
+| Layout | Desktop: text cols 1–6, render cols 7–12, both top-aligned; total height ≤ 100 svh minus header so the top rule of project 01 is just visible (it signals more below). Tablet: text above, render below at full width. Mobile: label, H1, lead, render, CTA |
+| Components | `Hero` (server), `HeroSequence` (client), `AnnotatedImage`, `Meta` |
+| Motion | `07` §3B (≤ 1.2 s sequence) |
+| Assets | One Ardura final render, ≥ 2400 px wide, product on a neutral background, room for callouts |
+| A11y | H1 is the headline. The image `alt` describes the product; callouts are real text |
+| Tech | Render `priority` (LCP). No client JS needed for the content to show |
+
+*Name visibility:* the name appears in the header wordmark and the `<title>`. The H1 is the headline, not the name: the name alone says nothing about what he does. **Alternative (D-30):** an H1 of "Mikel Arnao" with the headline as a subtitle, if you'd rather lead with the name.
+
+### A3. Selected work (`id="work"`)
+| | |
+|---|---|
+| Objective | Prove the claim with 4 projects in flagship order |
+| Content | Section label `SELECTED WORK · 04`, then 4 project cards (`10` §5): number, title, one-line summary, year, "My role" (condensed), disciplines, "View case study →" |
+| Proposed summaries (≤ 160 chars) | **01 Ardura**: "A smart plant pot that looks after itself: energy autonomy and circular materials for people who want plants but lack the time." · **02 SEAT Ateca mirror**: "Side-mirror redesign carried out with Maier: regulations, a redesigned electrical circuit and a full material specification." · **03 Mercedes V-Class vent**: "Life-cycle assessment of a car air vent, from hotspots to three redesign actions ranked by environmental gain." · **04 Orbea Cycle Dry**: "A simpler, cheaper rear rack developed with Orbea: material testing, sketching, specification and a manufacturing process." |
+| Layout | Cards stacked vertically, full grid width, 96–128 px apart |
+| Components | `WorkList`, `ProjectCard` |
+| Motion | W1–W3 |
+| Assets | One card image per project (3:2). Mercedes: vent photo |
+| A11y | `<section aria-labelledby>`; each card an `<article>` with one link; disciplines as text, not icons |
+
+*All four summaries need checking against the reports before launch, e.g. whether Ardura's report supports "looks after itself" (`09` claim limits).*
+
+### A4. Approach
+| | |
+|---|---|
+| Objective | Show method, and tie each step to evidence |
+| Takeaway | "He works through a real engineering process, and he leads the later stages." |
+| Content | Label `APPROACH`, H2 **How I take a product from idea to specification**, then 4 steps, each with title, 1–2 sentences and an evidence link: **01 Understand**: research, users, regulations → "Regulatory analysis, SEAT mirror" · **02 Explore**: sketching and concept selection → "Ideation sketches, Orbea rack" · **03 Develop**: CAD, mechanisms, circuits, materials → "Development and CAD, Ardura" · **04 Specify and present**: specifications, manufacturing, LCA, final renders → "Life-cycle assessment, Mercedes vent" |
+| Layout | Desktop: 4 columns with a top hairline and number each (spec-sheet columns). Tablet: 2×2. Mobile: stacked list |
+| Components | `Approach`, `ApproachStep`, text links to case-study anchors (e.g. `/work/seat-ateca-mirror#research`) |
+| Motion | Heading T1; steps fade with stagger. Optional: connecting line (`07` §5) |
+| A11y | Ordered list `<ol>` |
+
+### A5. About (short)
+| | |
+|---|---|
+| Objective | The person, briefly, and a door to `/about` |
+| Content (draft) | "I'm studying Industrial Design and Product Development Engineering at Mondragon Unibertsitatea in the Basque Country. Most of my projects are team projects with companies, and I tend to end up owning the development: CAD, materials, regulations and the final renders. I'm especially interested in how AI, robotics and connected products will change what we design and how we make it." Then link `More about me →` |
+| Layout | Desktop: label cols 1–3, text cols 4–10. Mobile: stacked |
+| Components | `AboutTeaser` |
+| Assets | Optional portrait (D-31). Without one, the section is text only |
+
+### A6. Footer / contact (`id="contact"`)
+| | |
+|---|---|
+| Objective | Make contacting effortless |
+| Content | H2 **Let's talk** (proposed) · `arnaomikel10@gmail.com` (large, `mailto:`) + `Copy` button · `LinkedIn ↗` · `Basque Country, Spain` · bottom row: `© 2026 Mikel Arnao` · `Designing what comes next.` |
+| Layout | Full-width block, top rule `rule-strong`, generous padding; email in `text-h2` size |
+| Components | `Footer`, `CopyEmailButton`, primary CTA `Email me` |
+| A11y | `<footer>`; external link announces it opens LinkedIn; copy status via `aria-live` |
+
+### A7. Homepage responsive summary
+| Section | Desktop ≥ 1024 | Tablet 640–1023 | Mobile < 640 |
+|---|---|---|---|
+| Hero | Text 6 cols / render 6 cols | Text, then render full width | Label, H1, lead, render, CTA |
+| Selected work | Image 7 / text 5 | Image full, text in 2 cols | Stacked |
+| Approach | 4 columns | 2 × 2 | List |
+| About | Offset text column | Full width | Full width |
+| Footer | Email large, links in a row | Same | Email wraps; links stacked |
 
 ---
 
@@ -140,5 +222,25 @@ Planning only. The storage format (MDX vs typed files) is decided in Phase 5. Fi
 
 ---
 
-## Part C — `/about`, 404
-*Pending.*
+## Part C — `/about` and 404
+
+### C1. `/about`
+Replaces a CV (D-18), so it has to carry the facts an admissions panel looks for.
+
+| Block | Content | Notes |
+|---|---|---|
+| Intro | H1 **About**; lead paragraph (expanded version of A5) | Optional portrait (D-31) beside it on desktop |
+| Education | `Mondragon Unibertsitatea · Faculty of Engineering` · `BSc Industrial Design and Product Development Engineering` · years (start–expected end) · current year | **D-28:** confirm start year, current year and expected graduation |
+| How I work | 3–4 short paragraphs: team projects with companies; what Mikel usually leads (development, CAD, regulations, materials, LCA, renders); how he documents decisions | Each claim backed by a linked case study |
+| Tools | Table by tool: **SolidWorks** (Ardura, SEAT, Orbea) · **Siemens NX** (SEAT) · **KeyShot** (Ardura, SEAT, Orbea) · **Blender** (Ardura, SEAT, Orbea) · **IHOBE Climate and circularity calculator** (Mercedes LCA) · **Adobe Creative Suite** (brand and dossier work) · **React, Next.js, TypeScript** (this website) | Shows *where* each tool was used instead of skill bars. No self-rated levels |
+| Interests | AI, robotics and industrial automation, connected products (IoT), sustainability and circular design: one sentence each on *why* | Labelled as interests, not skills (`01` §6) |
+| Languages | e.g. Spanish, Basque, English (levels) | **D-29:** confirm languages and levels |
+| Recognition | Only evidenced items. Currently none publishable (Ardura: iF participation, optional wording; Ibili embargoed; UPV pending) | |
+| Contact | Same footer | |
+
+Layout: single reading column (cols 3–10 desktop) with mono labels in cols 1–2, like report headings. Motion: T1 headings and `Reveal` on the optional portrait only.
+
+### C2. 404
+- H1 **Page not found**, one sentence, then the 4 project cards in compact form (title + number only) and a link home.
+- Same header and footer. No illustration, no animation.
+- Status 404 (Next `not-found.tsx`), `noindex`.
