@@ -97,3 +97,27 @@ Common to all four: team project at Mondragon Unibertsitatea, worked on across a
 4. ~~Tools per flagship~~: recorded in §3. Adobe applies to non-flagship dossiers (to specify later).
 5. **Permission and credit** from teammates whose work appears in images.
 6. **English copy**: three of the four flagship sources are in Spanish. Case-study text will be newly written.
+
+## 6. Placeholder imagery for the layout-approval build (D-32)
+
+Mikel wants to approve layout, performance and animation before the real assets go in. The first build therefore uses **generic placeholder images**, swapped for real ones afterwards without code changes.
+
+| Slot | Count | Placeholder | Real asset later |
+|---|---|---|---|
+| Hero render | 1 | Studio product photo on a neutral background (e.g. a plant pot or small appliance), landscape | Ardura final render |
+| Project card images | 4 | Product photos close to each project: planter, car side mirror, car interior / air vent, bicycle rear rack | Final renders; vent photo for Mercedes |
+| Process grid tiles | 12 | Per project: a sketch-like image, a technical/CAD-like image, a product photo | Real sketch, CAD screenshot and render per project |
+| Case-study media | ~8–12 per project | Mix of the same kinds, in the aspect ratios from `10` §5 | Real figures |
+| Portrait | 1 | Neutral generic portrait (no identifiable real person: a silhouette or back-lit figure) | Mikel's photo (D-31) |
+
+**Source:** free-licence stock (Unsplash or Pexels). Check the licence page at download time; both currently allow free use without attribution.
+- Files are downloaded **only with Mikel's approval** (Phase 8, listing filename, source and size).
+- They are stored in `content/media/_placeholder/` with a `SOURCES.md` listing each URL.
+- No images of identifiable people.
+- No brand logos (no real SEAT, Orbea or Mercedes products in placeholders, so nothing implies a real result).
+
+**Guard rails:**
+- Every media entry has `placeholder: true` while it uses a stand-in.
+- Every placeholder shows a small mono `PLACEHOLDER` tag on the image in development and preview deployments.
+- **Launch acceptance (`14`):** zero media entries with `placeholder: true`.
+- Placeholder text: case-study copy for the approval build uses the real structure with short draft text from the reports, never lorem ipsum, so the layout is judged with real lengths.

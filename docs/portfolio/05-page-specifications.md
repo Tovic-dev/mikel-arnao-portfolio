@@ -9,7 +9,7 @@ Status: **Parts A, B, C proposed** (2026-10-15). Copy is draft editorial text; f
 Copy below is **proposed** editorial text (label from `09`). Facts in it come from `09-content-and-assets.md` and the decision log.
 
 ### A0. Narrative flow
-**Who** (hero) → **proof** (4 projects) → **how** (approach, each step pointing back to a project) → **person** (about) → **contact**.
+**Who** (hero, curtain) → **transformation** (process grid: sketches, CAD and renders explode open into one message) → **proof** (4 projects) → **how** (approach, each step pointing back to a project) → **person** (about) → **contact**.
 A recruiter gets identity and the first project inside the first viewport and a half. An admissions reader gets method and motivation without leaving the page. Each section answers the question the previous one raises.
 
 ### A1. Header
@@ -37,11 +37,23 @@ A recruiter gets identity and the first project inside the first viewport and a 
 
 *Name visibility:* the name appears in the header wordmark and the `<title>`. The H1 is the headline, not the name: the name alone says nothing about what he does. **Alternative (D-30):** an H1 of "Mikel Arnao" with the headline as a subtitle, if you'd rather lead with the name.
 
+### A2b. Process grid (between hero and project list)
+| | |
+|---|---|
+| Objective | Turn "concept to specification" into a physical scroll experience, then hand over to the projects |
+| Takeaway | "Every project here went from sketch to CAD to render." |
+| Content | 12 square tiles, 3 per flagship (sketch, CAD, render). Centre: label `SELECTED WORK · 04`, H2 **Four products, from first sketch to final specification.**, lead *"Team projects with Orbea, Maier and Mondragon Unibertsitatea, where I led the development and the final renders."* (draft, to check), secondary CTA `View projects ↓` → `#work` |
+| Layout | Sticky dark stage (ink background, paper text), 260 vh desktop / 200 svh mobile |
+| Components | `ProcessGrid` (client: GSAP timeline; server-rendered tiles and text) |
+| Motion | `07` §3I; it is also the curtain that covers the hero (`07` §3H) |
+| Assets | 12 square crops. **Placeholders first** (D-32) |
+| A11y | Tiles `alt=""`; heading and CTA are real content; reduced motion shows a static grid |
+
 ### A3. Selected work (`id="work"`)
 | | |
 |---|---|
 | Objective | Prove the claim with 4 projects in flagship order |
-| Content | Section label `SELECTED WORK · 04`, then 4 project cards (`10` §5): number, title, one-line summary, year, "My role" (condensed), disciplines, "View case study →" |
+| Content | No repeated section title (the process grid introduced it); a visually hidden H2 "Selected work" for the outline, then 4 project cards (`10` §5): number, title, one-line summary, year, "My role" (condensed), disciplines, "View case study →" |
 | Proposed summaries (≤ 160 chars) | **01 Ardura**: "A smart plant pot that looks after itself: energy autonomy and circular materials for people who want plants but lack the time." · **02 SEAT Ateca mirror**: "Side-mirror redesign carried out with Maier: regulations, a redesigned electrical circuit and a full material specification." · **03 Mercedes V-Class vent**: "Life-cycle assessment of a car air vent, from hotspots to three redesign actions ranked by environmental gain." · **04 Orbea Cycle Dry**: "A simpler, cheaper rear rack developed with Orbea: material testing, sketching, specification and a manufacturing process." |
 | Layout | Cards stacked vertically, full grid width, 96–128 px apart |
 | Components | `WorkList`, `ProjectCard` |
@@ -83,7 +95,8 @@ A recruiter gets identity and the first project inside the first viewport and a 
 ### A7. Homepage responsive summary
 | Section | Desktop ≥ 1024 | Tablet 640–1023 | Mobile < 640 |
 |---|---|---|---|
-| Hero | Text 6 cols / render 6 cols | Text, then render full width | Label, H1, lead, render, CTA |
+| Hero | Text 6 cols / render 6 cols, sticky curtain | Text, then render full width | Label, H1, lead, render, CTA |
+| Process grid | Grid ≈ 50vw, zoom 2.05 | Grid ≈ 70vw | Grid ≈ 88vw, zoom 1.8, 200 svh |
 | Selected work | Image 7 / text 5 | Image full, text in 2 cols | Stacked |
 | Approach | 4 columns | 2 × 2 | List |
 | About | Offset text column | Full width | Full width |
@@ -229,12 +242,12 @@ Replaces a CV (D-18), so it has to carry the facts an admissions panel looks for
 
 | Block | Content | Notes |
 |---|---|---|
-| Intro | H1 **About**; lead paragraph (expanded version of A5) | Optional portrait (D-31) beside it on desktop |
-| Education | `Mondragon Unibertsitatea · Faculty of Engineering` · `BSc Industrial Design and Product Development Engineering` · years (start–expected end) · current year | **D-28:** confirm start year, current year and expected graduation |
+| Intro | H1 **About**; lead paragraph (expanded version of A5) | Portrait beside it on desktop. **Placeholder portrait** until Mikel adds his photo (D-31, D-32) |
+| Education | `Mondragon Unibertsitatea · Faculty of Engineering` · `BSc Industrial Design and Product Development Engineering` · `2023 – 2027 (expected)` · `4th year` | Confirmed (D-28) |
 | How I work | 3–4 short paragraphs: team projects with companies; what Mikel usually leads (development, CAD, regulations, materials, LCA, renders); how he documents decisions | Each claim backed by a linked case study |
 | Tools | Table by tool: **SolidWorks** (Ardura, SEAT, Orbea) · **Siemens NX** (SEAT) · **KeyShot** (Ardura, SEAT, Orbea) · **Blender** (Ardura, SEAT, Orbea) · **IHOBE Climate and circularity calculator** (Mercedes LCA) · **Adobe Creative Suite** (brand and dossier work) · **React, Next.js, TypeScript** (this website) | Shows *where* each tool was used instead of skill bars. No self-rated levels |
 | Interests | AI, robotics and industrial automation, connected products (IoT), sustainability and circular design: one sentence each on *why* | Labelled as interests, not skills (`01` §6) |
-| Languages | e.g. Spanish, Basque, English (levels) | **D-29:** confirm languages and levels |
+| Languages | Basque: native · Spanish: native · English: C1 (Cambridge CAE) | Confirmed (D-29) |
 | Recognition | Only evidenced items. Currently none publishable (Ardura: iF participation, optional wording; Ibili embargoed; UPV pending) | |
 | Contact | Same footer | |
 

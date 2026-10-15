@@ -58,3 +58,43 @@ Status: **round 1, partial** (2026-10-15). This round covers art direction only.
 2. **A technical caption system** (teenage engineering) is the most distinctive idea, and it fits "concept to specification" exactly.
 3. **Neutral grounds + centred product renders** (Industrial Facility) let Mikel's own renders carry the visuals and cost almost nothing to build.
 4. **Desktop nav stays visible.** No burger on desktop.
+
+---
+
+## Round 2 — Mikel's reference: "Sticky Grid Scroll" (2026-10-15) · *Inspected (full source)*
+
+- **File:** `Downloads/sticky-grid-scroll2.html` (single-file adaptation, 12 embedded images, Spanish UI text)
+- **Original:** Codrops "Sticky Grid Scroll" by Theo Plawinski, github.com/theoplawinski/codrops-sticky-grid-scroll. **Licence: MIT** (verified via GitHub API). Keep the copyright notice in the adapted source file.
+- **Stack in the example:** GSAP 3.13 + ScrollTrigger + SplitText (CDN), Lenis 1.1.20 (current: 1.3.27).
+
+### What it does
+1. **Curtain hero.**
+   - The hero is `position: sticky`, so it stays in place while the next section, which is opaque, slides over it like a curtain.
+   - While it is being covered, the hero shrinks (scale 0.94), moves up 8% and darkens to 50% (scroll-scrubbed).
+   - On load, the name animates letter by letter from line masks (SplitText `chars` + `mask: "lines"`, 1.2 s, stagger 0.05).
+2. **Sticky grid scroll.**
+   - A 425 vh section with a sticky 100 vh stage holds a 3-column grid of 12 square images.
+   - **Reveal:** columns slide in, even columns from above and odd from below, staggered.
+   - **Zoom:** the grid scales ×2.05. The side columns push outward (±40% x) and the middle column splits up and down (±40% y), opening a gap.
+   - **Content:** the centred title rises, then the description and button fade in.
+   - One scrubbed timeline drives the whole sequence.
+3. **Smooth scroll:** Lenis (lerp 0.08) synchronised with ScrollTrigger through the GSAP ticker.
+4. **Looping scroll hint:** an endlessly animated vertical line.
+5. **Loading gate:** the page can't scroll until every image and font has loaded.
+
+### What works and why Mikel likes it
+- **Scroll becomes a physical, mechanical motion.** Columns slide like drawers and parts separate like an **exploded view**. That fits an industrial designer's language.
+- **The curtain gives depth with only transform and opacity.** It is cheap to render.
+- **The sequence is a story:** many images become one focused message.
+
+### Conflicts with the approved plan, and how each is resolved
+| Example does | Plan said | Resolution |
+|---|---|---|
+| Lenis smooth scroll | No Lenis (`07` §4) | Build with native scroll + `scrub: 0.6` (GSAP smooths the animation, not the page). **Test Lenis in the prototype** on desktop only, off for touch and reduced motion, and let Mikel decide by feel (D-33) |
+| 425 vh pinned/sticky section | No pinning in MVP | **Accepted as the one sticky sequence on the homepage**, shortened to ~260 vh desktop / ~200 svh mobile so a recruiter isn't scrolling through 3 screens of motion |
+| Character-level intro, 1.2 s + 0.05 stagger | Line masks only, ≤ 1.2 s | Characters allowed **on the hero H1 only**, stagger 0.015, total ≤ 1.4 s, with accessible text kept intact |
+| Loading gate (no scroll until assets load) | Content never waits | **Dropped.** The grid isn't in the first viewport and uses placeholders while images load |
+| Infinite scroll hint | No loops | Plays 3 cycles, then stops; none under reduced motion |
+| Dark stage, Instrument Serif display, `mix-blend-mode: difference` | Light Spec Sheet, Geist | The grid stage becomes **the one dark "sheet"** on the site (ink background, paper text, both from the palette). Type stays Geist. No blend modes, because their contrast is unpredictable |
+| 1440-based fluid `rem` (tiny on phones) | Fluid clamp type scale | Use the design-system scale; explicit mobile layout (`07` §3H) |
+| Images are anonymous squares | Content is evidence | The 12 tiles are **3 per flagship project: sketch → CAD → render**, so the grid literally shows "concept to specification" |

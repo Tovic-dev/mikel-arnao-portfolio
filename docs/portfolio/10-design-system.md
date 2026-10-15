@@ -1,6 +1,6 @@
 # Design System — "Spec Sheet"
 
-Status: **proposed** (2026-10-15). Typeface pair and accent colour to be picked from the rendered samples (D-26, D-27). Everything else is a proposal with real values.
+Status: **typeface (Geist + Geist Mono) and accent (signal orange) approved** (2026-10-15, D-26, D-27). Other values proposed; validated in the approval build.
 Depends on: `02-creative-direction.md` (A approved), `07-motion-specification.md`, `08-technical-architecture.md`
 Implementation: all **global tokens** live in `app/globals.css` under Tailwind v4 `@theme` (`08` §4). Values marked *local* belong to one composition and must not become tokens.
 

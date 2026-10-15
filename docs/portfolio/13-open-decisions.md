@@ -28,6 +28,14 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-22 | Motion engine: GSAP (core + ScrollTrigger + SplitText) + CSS for hover/state; no Lenis, no pinning, no route transitions in MVP | 2026-10-15 |
 | D-24 | **Stack approved** as in `08-technical-architecture.md` (Next.js 16.4.x ≥ 16.4.1 static, TS ^5.9 strict, Tailwind v4, GSAP, typed content files, Vercel Hobby, pnpm) | 2026-10-15 |
 | D-25 | Deployment: **private GitHub repo connected to Vercel** (preview per push, `main` = production) | 2026-10-15 |
+| D-26 | Typeface: **Geist + Geist Mono** | 2026-10-15 |
+| D-27 | Accent: **signal orange**, line `#E04800`, text `#B83A00` | 2026-10-15 |
+| D-28 | Education: Mondragon Unibertsitatea, 2023–2027 (expected), currently 4th year | 2026-10-15 |
+| D-29 | Languages: Basque (native), Spanish (native), English C1 (Cambridge CAE) | 2026-10-15 |
+| D-30 | Hero H1 = headline "From concept to specification."; name in header and title | 2026-10-15 |
+| D-31 | Portrait: Mikel has one and will add it later; placeholder until then | 2026-10-15 |
+| D-32 | **Placeholder images** (generic, free-licence) for the first build so layout, performance and motion can be approved before real assets; plan in `09` §6 | 2026-10-15 |
+| D-34 | Adopt Mikel's "Sticky Grid Scroll" reference (Codrops, MIT): curtain hero + sticky process grid on the homepage, adapted to Spec Sheet (`03` round 2, `07` §3H–I, `05` A2b) | 2026-10-15 |
 
 ## Round 3 — open
 
@@ -36,12 +44,7 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
 | D-21 | IA: home as index, no `/work` page, no `/contact` page, no burger, static header, sticky section index in case studies | See `04-information-architecture.md` | RECOMMENDED |
-| D-26 | Typeface pair | Geist + Geist Mono (samples shown 2026-10-15; `10` §2) | RECOMMENDED |
-| D-27 | Accent colour | Signal orange: line `#E04800`, text `#B83A00` (`10` §1) | RECOMMENDED |
-| D-28 | Education facts for `/about`: start year, current year, expected graduation | Needed for `/about` and JSON-LD | OPEN |
-| D-29 | Languages and levels | For `/about` | OPEN |
-| D-30 | Hero H1: headline "From concept to specification." (name in header) vs name as H1 | Headline as H1 | RECOMMENDED |
-| D-31 | Portrait photo on `/about` (and optionally the homepage about section) | Optional; recommended for admissions. Neutral background, natural light | OPEN |
+| D-33 | Lenis smooth scroll | Prototype A/B on desktop: native scroll + `scrub: 0.6` vs Lenis (desktop only, off for touch and reduced motion). Mikel decides by feel | OPEN (at prototype) |
 | D-23 | Git commit email is `arnaomikel10@email.com` (domain "email.com") while the contact email is `@gmail.com` | Probably a typo in your git config. Fix with `git config --global user.email` if so | OPEN |
 | D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
 

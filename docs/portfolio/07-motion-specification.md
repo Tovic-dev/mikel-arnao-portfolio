@@ -1,6 +1,6 @@
 # Motion Specification
 
-Status: **proposed** (2026-10-15) · Depends on: `02-creative-direction.md` (A), `04-information-architecture.md`, `05-page-specifications.md`
+Status: **proposed, rev. 2** (2026-10-15): adds the curtain hero and process grid adapted from Mikel's "Sticky Grid Scroll" reference (`03` round 2)
 Library versions and APIs are checked against official docs in Phase 5 (`08-technical-architecture.md`). Nothing here is verified against code yet.
 
 ## 1. Motion principles for "Spec Sheet"
@@ -10,7 +10,7 @@ Library versions and APIs are checked against official docs in Phase 5 (`08-tech
 3. **Once only.** Scroll reveals play the first time an element enters the view and never reverse.
 4. **Body text is never animated.** Only headings, images, lines, labels and charts.
 5. **Composite-only properties:** `transform`, `opacity`, `clip-path`, SVG `stroke-dashoffset`. No animated `filter: blur`, `width`/`height`, `top`/`left` or box-shadow.
-6. **Native scrolling.** No smooth-scroll library, no scroll hijacking, no pinned sections in the MVP.
+6. **Native scrolling first.** No scroll hijacking. **One** sticky scroll sequence on the homepage (the process grid, §3I) plus the curtain hero (§3H); no other pinned sections in the MVP. Lenis is tested in the prototype only (D-33).
 
 ## 2. Motion tokens
 
@@ -46,12 +46,12 @@ Reduced-motion values: §6.
 
 ### B. Homepage hero — *Essential*
 
-One load sequence, total ≤ 1.2 s, starting as soon as the page hydrates:
+One load sequence, total ≤ 1.4 s, starting as soon as the page hydrates (H1 uses character masks; see §3H):
 
 | t (ms) | Element | Behaviour |
 |---|---|---|
 | 0 | Meta line (role · availability) | Fade + 16 px up, 500 ms |
-| 80 | Headline "From concept to specification." | Lines rise inside overflow masks, 700 ms, stagger 70 ms |
+| 80 | Headline "From concept to specification." | Characters rise inside line masks, 1.0 s, stagger 15 ms (§3H) |
 | 200 | Ardura render | `clip-path` opens bottom→top, 900 ms |
 | 900 | Leader lines (2–3) | Draw via `stroke-dashoffset`, 500 ms, stagger 90 ms |
 | 1100 | Annotation labels | Fade in, 250 ms |
@@ -59,6 +59,39 @@ One load sequence, total ≤ 1.2 s, starting as soon as the page hydrates:
 - No pointer parallax and no 3D.
 - **LCP guard:** the render is the likely LCP element. Its clip reveal must start immediately (not after the text), and the image is preloaded with high priority.
 - **Mobile:** same sequence. The annotations become a numbered list below the image (from `05` §B6), and that list fades in.
+
+### H. Curtain hero (homepage) — *Essential* (adapted from "Sticky Grid Scroll", `03` round 2)
+
+| Item | Spec |
+|---|---|
+| Structure | Hero is `position: sticky; top: 0; height: 100svh; z-index: 0`. Every following homepage section has an opaque background and `z-index: 1`, so it slides over the hero |
+| Trigger | ScrollTrigger on the process-grid section: `start: "top bottom"` → `end: "top top"`, `scrub: 0.6` |
+| Behaviour | Hero inner: `scale 1 → 0.95`, `yPercent 0 → −6` (origin bottom centre); shade layer (ink) `opacity 0 → 0.4`. Once the hero is fully covered, set `visibility: hidden` (restored on scroll back) so it's skipped by paint and by assistive tech focus order |
+| Easing | `none` (scroll-linked) |
+| Mobile | Same, with scale only to 0.97 and shade 0.3 (smaller screens make large moves feel like lag) |
+| Reduced motion | Sticky curtain stays (it is layout, not animation); no scale and no shade |
+| A11y | Hero content stays in the DOM. The hidden state only applies when it is visually fully covered |
+| Hero load sequence | As §B, except the H1 uses **character masks**: SplitText `type: "chars,lines", mask: "lines"`, chars `yPercent 115 → 0`, 1.0 s, `power4.out`, stagger 0.015. Total sequence ≤ 1.4 s. The screen-reader text of the H1 must stay the full sentence (verify SplitText's aria output in Phase 8) |
+| Scroll hint | "Scroll" label + 1 px line with a moving fill, `1.8 s cubic-bezier(.7,0,.3,1)`, **3 iterations then stops**; hidden under reduced motion; `aria-hidden` |
+
+### I. Process grid (homepage) — *Essential* (adapted from "Sticky Grid Scroll")
+
+Sits between the hero and the project list. It turns 12 images into one message and leads straight into Selected Work.
+
+| Item | Spec |
+|---|---|
+| Content | 12 square tiles = **3 per flagship (sketch, CAD, render)**, arranged so each column mixes projects. Centre text: label `SELECTED WORK · 04` · H2 **Four products, from first sketch to final specification.** · lead (1 sentence) · secondary CTA `View projects ↓` (→ the project list) |
+| Structure | Section `height: 260vh` (desktop) / `200svh` (mobile); inner stage `position: sticky; top: 0; height: 100svh; overflow: hidden`; **ink background, paper text** (the site's one dark sheet) |
+| Grid | 3 columns, square tiles. Desktop width ≈ 50vw (max 760 px), column gap 32 px, row gap 40 px. Mobile: 3 columns kept at ~88vw, gaps 12/16 px |
+| Timeline (one scrubbed timeline, `scrub: 0.6`, `start: "top top"`, `end: "bottom bottom"`) | **1. Column reveal:** even columns from above, odd from below, `y = ±(viewport height − (viewport height − grid height)/2)`, stagger 0.06 per tile (from end / start), `power1.inOut`. **2. Exploded zoom** (overlaps by 0.6): grid `scale → 2.05`, column 1 `xPercent → −40`, column 3 `xPercent → 40`, column 2 splits `yPercent ±40` (top half up, bottom half down), `power3.inOut`. **3. Content:** the H2 is pre-offset to the centre and rises to its resting place; lead + CTA fade in (0.4 s) when the scroll direction is forward, out when backward (non-scrubbed toggle, as in the original) |
+| Images | `next/image`, `sizes` matched to the zoomed size (tiles get ~2× larger, so request ~2× tile width), `loading="lazy"` with blur placeholder. **No loading gate** |
+| Alt text | Tiles are `alt=""` (decorative here); the same images appear with full alt text in the project list and case studies. The section has a real heading and CTA |
+| Interaction | Tiles aren't links. The CTA and the following list are the way in |
+| Mobile | Same sequence, shorter section; zoom 1.8 instead of 2.05 so side columns don't leave the screen too early. Test on a real phone: if it stutters on a mid-range Android, fall back to the reduced-motion version for `(max-width: 639px)` |
+| Reduced motion | **No sticky stage**: section height auto; static 3×4 grid shown with the H2, lead and CTA above it |
+| Keyboard | Tabbing to the CTA while the stage is mid-sequence: the CTA is `pointer-events: none` and `tabindex="-1"` until shown, then focusable, so focus never lands on an invisible button |
+| Performance | Only transform and opacity; 12 images ≈ 12 compositor layers during the sequence, with `will-change: transform` only while the section is active (set in `onToggle`). Verify in DevTools (Phase 9) |
+| Source | Adapted from MIT-licensed code; keep the licence notice in the component file |
 
 ### C. Selected work (homepage) — *Essential*
 
@@ -78,7 +111,7 @@ The whole card is a single `<a>`: one tab stop, with a descriptive accessible na
 | T2 | Section numbers (01, 02…) | Fade in with the heading | |
 | T3 | Body text, captions, tables | **Not animated** | |
 
-No character-level animation and no scrambling. They hurt readability and don't fit the direction.
+No character-level animation and no scrambling, **except the hero H1** (§3H), which is one short sentence shown once.
 
 ### E. Case studies — *Essential*
 
@@ -113,7 +146,7 @@ No character-level animation and no scrambling. They hurt readability and don't 
 | Heading line splits | GSAP SplitText (candidate) | Handles line detection, re-splitting on resize and accessibility. **Verify licence and accessibility handling in Phase 5** |
 | Section index active state | IntersectionObserver | Not animation, so no engine needed |
 | CAD → render slider | Native pointer events | Direct manipulation; any library would be overhead |
-| Smooth scroll | **None** | Smooth scrolling adds input lag, breaks anchor and keyboard expectations, and fights sticky elements. Native scroll is faster and more accessible |
+| Smooth scroll | **Native scroll + `scrub: 0.6`** by default. **Lenis A/B test in the prototype** (D-33): desktop only (`syncTouch: false`), disabled under reduced motion, driven from the GSAP ticker so there is one loop, `anchors: true` for in-page links. Kept only if Mikel prefers it and it passes the keyboard/anchor checks | Smoothing the scrubbed animations gets most of the example's feel without taking over the page scroll; Lenis is a decision by feel, so it is tested, not assumed |
 
 **Alternative considered:** CSS scroll-driven animations (`animation-timeline: view()`) plus IntersectionObserver, with no JS engine. Lighter, but browser support and once-only behaviour need checking. Phase 5 decides between this and GSAP based on current support data. The motion design above works with either engine.
 
@@ -151,7 +184,7 @@ No character-level animation and no scrambling. They hurt readability and don't 
 
 ## 7. Effects to avoid (decided)
 
-Preloaders and intro screens · smooth-scroll libraries · scroll hijacking and horizontal scroll sections · custom cursors · magnetic buttons · parallax on text · continuous or looping animation · animated blur or glow · character scrambles · counting numbers · WebGL / 3D in the MVP · autoplaying video with sound.
+Preloaders, loading gates and intro screens · scroll hijacking and horizontal scroll sections · custom cursors · magnetic buttons · parallax on text · continuous or looping animation (the scroll hint stops after 3 cycles) · animated blur or glow · character scrambles · counting numbers · WebGL / 3D in the MVP · autoplaying video with sound.
 
 ## 8. Performance acceptance (verified in Phase 9)
 
