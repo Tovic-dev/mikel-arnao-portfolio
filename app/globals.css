@@ -218,23 +218,32 @@
   margin-top: -100svh;
 }
 
-/* Hero render clip reveal on load (07 §3B). CSS, not JS, so it starts at first
-   paint and doesn't delay LCP. Off with reduced motion. */
-.load-clip {
-  animation: load-clip 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.05s both;
+/* Hero render reveal on load (07 §3B). A paper cover shrinks away bottom→top
+   over the image, so the image itself is painted from the first frame and LCP
+   isn't delayed by the reveal (a clip-path would hide it until fully open).
+   CSS, not JS, so it starts at first paint. Off with reduced motion. */
+.load-clip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-raised);
+  background: var(--color-paper);
+  transform-origin: top;
+  animation: load-cover 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.05s both;
+  pointer-events: none;
 }
 
-@keyframes load-clip {
+@keyframes load-cover {
   from {
-    clip-path: inset(100% 0 0 0);
+    transform: scaleY(1);
   }
   to {
-    clip-path: inset(0 0 0 0);
+    transform: scaleY(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .load-clip {
-    animation: none;
+  .load-clip::after {
+    display: none;
   }
 }
