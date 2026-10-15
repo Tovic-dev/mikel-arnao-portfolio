@@ -87,9 +87,12 @@ export function ProcessGrid({
           shown = visible;
           if (cta) cta.tabIndex = visible ? 0 : -1;
           gsap
-            .timeline({ defaults: { overwrite: true } })
+            // "auto": only stop tweens on the same properties, so the heading fade-in
+            // (opacity) is never killed half-way by this move (yPercent).
+            .timeline({ defaults: { overwrite: "auto" } })
             .to(heading, {
               yPercent: visible ? 0 : titleOffset(),
+              opacity: 1,
               duration: 0.7,
               ease: "power2.inOut",
             })
