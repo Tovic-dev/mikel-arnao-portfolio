@@ -36,17 +36,19 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-31 | Portrait: Mikel has one and will add it later; placeholder until then | 2026-10-15 |
 | D-32 | **Placeholder images** (generic, free-licence) for the first build so layout, performance and motion can be approved before real assets; plan in `09` §6 | 2026-10-15 |
 | D-34 | Adopt Mikel's "Sticky Grid Scroll" reference (Codrops, MIT): curtain hero + sticky process grid on the homepage, adapted to Spec Sheet (`03` round 2, `07` §3H–I, `05` A2b) | 2026-10-15 |
+| D-21 | IA: home as index, no `/work` or `/contact` page, no burger, static header, sticky section index in case studies (`04`) | 2026-10-15 |
 
-## Round 3 — open
+## Open
 
 | ID | Decision | Recommendation | Status |
 |---|---|---|---|
 | D-05b | UPV competition (house) | Future project; add doc and link when it's added | DEFERRED |
 | D-09 | Missing brief projects (mobility app, T-shirts, robotics) | Added after MVP | DEFERRED |
-| D-21 | IA: home as index, no `/work` page, no `/contact` page, no burger, static header, sticky section index in case studies | See `04-information-architecture.md` | RECOMMENDED |
 | D-33 | Lenis smooth scroll | Prototype A/B on desktop: native scroll + `scrub: 0.6` vs Lenis (desktop only, off for touch and reduced motion). Mikel decides by feel | OPEN (at prototype) |
+| D-10 | Timeline: approval build by 1 Nov, real content by 15 Nov, launch 23 Nov, PDF 24 Nov – 6 Dec, buffer to mid-Dec (`12` §0) | Part of the final approval | RECOMMENDED |
+| D-35 | Exact master's application deadline(s) | Tell me when known; the roadmap assumes ≈ 15 Dec | OPEN |
+| **D-36** | **Final plan approval (Phase 7) → authorise Phase 8 implementation** | Review `00-project-brief.md` | **OPEN** |
 | D-23 | Git commit email is `arnaomikel10@email.com` (domain "email.com") while the contact email is `@gmail.com` | Probably a typo in your git config. Fix with `git config --global user.email` if so | OPEN |
-| D-10 | Planning depth vs deadline | Planning ≈ 2 weeks, MVP weeks 3–6, polish 7–8. **The PDF also needs time before the deadline. Reserve the last ~1.5 weeks for it**, so the web MVP must be done by ~week 5 | RECOMMENDED |
 
 ## Low-impact decisions taken (reversible)
 
