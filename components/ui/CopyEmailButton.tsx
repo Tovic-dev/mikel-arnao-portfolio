@@ -6,7 +6,14 @@ import { useEffect, useState } from "react";
 type Status = "idle" | "copied" | "failed";
 
 // Copy-to-clipboard with an aria-live status (07 G4).
-export function CopyEmailButton({ email }: { email: string }) {
+export function CopyEmailButton({
+  email,
+  variant = "default",
+}: {
+  email: string;
+  /** "nav": compact header version (Checkpoint A: replaces the Contact link). */
+  variant?: "default" | "nav";
+}) {
   const [status, setStatus] = useState<Status>("idle");
 
   useEffect(() => {
@@ -31,7 +38,11 @@ export function CopyEmailButton({ email }: { email: string }) {
       <button
         type="button"
         onClick={copy}
-        className="inline-flex min-h-12 cursor-pointer items-center gap-2 border border-ink px-5 label transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
+        className={
+          variant === "nav"
+            ? "inline-flex min-h-11 cursor-pointer items-center gap-2 border border-rule-strong px-3 label text-ink transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
+            : "inline-flex min-h-12 cursor-pointer items-center gap-2 border border-ink px-5 label transition-colors duration-(--dur-base) ease-standard hover:border-accent-text hover:text-accent-text"
+        }
       >
         <Icon aria-hidden="true" className="size-4" strokeWidth={1.5} />
         {status === "copied" ? "Copied" : "Copy email"}
@@ -39,7 +50,7 @@ export function CopyEmailButton({ email }: { email: string }) {
       <span role="status" aria-live="polite" className="sr-only">
         {status === "copied" && "Email address copied to clipboard"}
         {status === "failed" &&
-          "Couldn't copy. The email address is shown above."}
+          "Couldn't copy. The email address is in the contact section at the bottom of the page."}
       </span>
     </>
   );

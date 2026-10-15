@@ -36,13 +36,10 @@ export function Hero() {
         >
           <div className="page-grid gap-y-10">
             <div className="col-span-full flex flex-col lg:col-span-6">
-              <p data-hero="meta" className="label text-ink-3">
-                {site.role}
-              </p>
               <h1
                 id="hero-title"
                 data-hero="title"
-                className="mt-6 max-w-[12ch] text-display"
+                className="max-w-[12ch] text-display"
               >
                 {site.headline}
               </h1>
