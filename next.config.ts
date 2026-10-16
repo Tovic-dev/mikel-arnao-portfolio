@@ -1,8 +1,8 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
-// Fully static portfolio (docs/portfolio/08-technical-architecture.md §2).
-// Cache Components is left off: it forbids `dynamicParams = false`, and this
-// site has no request-time data, so every route is prerendered at build time.
+// Prerendered pages, revalidated when content is saved in the CMS
+// (docs/portfolio/16 §3). Only /dashboard and /api run on each request.
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -15,13 +15,27 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  experimental: {
+    // Two root layouts (site + dashboard): one 404 page for unmatched URLs.
+    globalNotFound: true,
+  },
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],
+    // CMS uploads on Vercel Blob (locally they're served from /api/media).
+    remotePatterns: [
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    const noindex = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/dashboard/:path*", headers: noindex },
+      { source: "/dashboard", headers: noindex },
+      { source: "/api/:path*", headers: noindex },
+    ];
   },
   turbopack: {
     rules: {
@@ -33,4 +47,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

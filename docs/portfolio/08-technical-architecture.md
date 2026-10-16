@@ -28,7 +28,7 @@ What it adds up to: one framework, one styling system, one animation engine, no 
 
 ## 2. Next.js and React
 
-**Decision:** Next.js App Router, every route statically generated at build time.
+**Decision:** Next.js App Router, every route statically generated at build time. **Superseded in part by the CMS (`16` §3, §11):** pages are still prerendered, but revalidated when content is published, and content comes from Payload instead of typed TS files.
 
 - **Why Next.js:** it's the stack Mikel already uses. It also handles image optimisation, font self-hosting, metadata, sitemap, robots and OG images in one place, and deploys natively to Vercel.
 - **Alternatives considered:**

@@ -1,5 +1,6 @@
 "use client";
 
+import { blur } from "@/lib/image";
 import Image from "next/image";
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import type { ImageAsset } from "@/content/types";
@@ -63,7 +64,7 @@ export function CompareSlider({
         <Image
           src={before.src}
           alt={before.alt}
-          placeholder="blur"
+          placeholder={blur(before.src)}
           sizes={sizes}
           className="block h-auto w-full"
           draggable={false}

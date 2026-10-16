@@ -1,28 +1,28 @@
+import { blur } from "@/lib/image";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
-import { placeholders } from "@/content/projects/_placeholders";
-import { site } from "@/content/site";
-import type { Annotation } from "@/content/types";
+import type { Annotation, ImageAsset } from "@/content/types";
 import { JumpLink } from "@/components/ui/JumpLink";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
 import { HeroSequence } from "./HeroSequence";
 
-const heroImage = placeholders.homeHero;
-
-// Callouts on the hero render (05 A2). Positions are local values for this image.
-const callouts: Annotation[] = [
-  {
-    x: 40,
-    y: 30,
-    labelX: 4,
-    labelY: 12,
-    text: "CAD + development · led by me",
-  },
-  { x: 62, y: 58, labelX: 64, labelY: 80, text: "Final render · led by me" },
-];
-
 // Curtain hero (05 A2, 07 §3B + §3H). Sticky: the next section slides over it.
-export function Hero() {
+interface HeroProps {
+  headline: string;
+  supporting: string;
+  availability: string;
+  heroImage: ImageAsset;
+  /** Callouts on the hero render; positions are local values for the image. */
+  callouts: Annotation[];
+}
+
+export function Hero({
+  headline,
+  supporting,
+  availability,
+  heroImage,
+  callouts,
+}: HeroProps) {
   return (
     <HeroSequence>
       <section
@@ -41,16 +41,16 @@ export function Hero() {
                 data-hero="title"
                 className="max-w-[12ch] text-display"
               >
-                {site.headline}
+                {headline}
               </h1>
               <p
                 data-hero="lead"
                 className="mt-8 max-w-[44ch] text-lead text-ink-2"
               >
-                {site.supporting}
+                {supporting}
               </p>
               <p data-hero="meta" className="mt-8 label text-ink-3">
-                {site.availability}
+                {availability}
               </p>
             </div>
 
@@ -64,7 +64,7 @@ export function Hero() {
                   alt={heroImage.alt}
                   loading="eager"
                   fetchPriority="high"
-                  placeholder="blur"
+                  placeholder={blur(heroImage.src)}
                   quality={85}
                   sizes="(min-width: 64rem) 50vw, 100vw"
                   className="size-full object-cover"

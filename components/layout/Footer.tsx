@@ -1,10 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { site } from "@/content/site";
+import { getSite } from "@/content";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 
 // Compact contact footer on every page (04 §3, 05 A6; made smaller at Checkpoint A).
 // Opaque, so it covers the sticky sections above it.
-export function Footer() {
+export async function Footer() {
+  const site = await getSite();
   return (
     <footer
       id="contact"

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { site } from "@/content/site";
+import { getSite } from "@/content";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { NavLink } from "./NavLink";
 
 // Static header (04 §3): scrolls away; two rows on mobile, one row from 640 px.
-export function Header() {
+export async function Header() {
+  const site = await getSite();
   return (
     <header className="relative z-(--z-raised) border-b border-rule bg-paper">
       <div className="container-page flex flex-col gap-2 py-4 sm:flex-row sm:items-center sm:justify-between sm:py-6">

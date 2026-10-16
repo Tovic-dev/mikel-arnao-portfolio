@@ -1,3 +1,4 @@
+import { blur } from "@/lib/image";
 import Image from "next/image";
 import type { ImageAsset } from "@/content/types";
 import { PlaceholderTag } from "@/components/ui/PlaceholderTag";
@@ -17,7 +18,7 @@ export function Frame({
       <Image
         src={image.src}
         alt={image.alt}
-        placeholder="blur"
+        placeholder={blur(image.src)}
         sizes={sizes}
         className="block h-auto w-full"
       />

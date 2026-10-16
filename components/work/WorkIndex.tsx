@@ -1,5 +1,6 @@
 "use client";
 
+import { blur } from "@/lib/image";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -462,7 +463,7 @@ export function WorkIndex({ items }: { items: WorkItem[] }) {
                     <Image
                       src={i.image.src}
                       alt={i.image.alt}
-                      placeholder="blur"
+                      placeholder={blur(i.image.src)}
                       sizes="(min-width: 64rem) 30vw, (min-width: 40rem) 45vw, 100vw"
                       className="size-full object-cover transition-transform duration-600 ease-standard group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />

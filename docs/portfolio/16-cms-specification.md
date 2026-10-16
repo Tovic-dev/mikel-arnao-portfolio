@@ -135,7 +135,7 @@ Uploads can't live on Vercel's filesystem. **Vercel Blob** via `@payloadcms/stor
 
 **Alternative considered:** a Git-based CMS (Keystatic, TinaCMS) keeps the site 100% static with no database, saving changes as commits. It's simpler and has fewer moving parts, but Payload gives a real dashboard with drafts, versions, an upload library and room to grow, which is what was asked for.
 
-## 10. Decisions needed from Mikel
+## 10. Decisions (approved 2026-10-16)
 
 | ID | Decision | Recommendation |
 |---|---|---|
@@ -144,3 +144,19 @@ Uploads can't live on Vercel's filesystem. **Vercel Blob** via `@payloadcms/stor
 | D-45 | Password reset by email | Add **Resend** (free tier) later; v1 without email |
 | D-46 | Live preview of drafts | Yes, in v1 if time allows; otherwise right after |
 | D-47 | When to build | **Now**, before 8.3, so real content goes in through the CMS |
+
+## 11. Implementation notes (2026-10-16)
+
+- **Layout:** the site moved to `app/(frontend)/`, Payload's generated files are in `app/(payload)/`, the CMS schema in `cms/` (collections, globals, media blocks, access, revalidation) and `payload.config.ts`. Two root layouts, so unmatched URLs use `app/global-not-found.tsx` (Next's experimental `globalNotFound`), which reuses the site's header, footer and 404 content.
+- **Data layer:** `content/index.ts` reads with the Local API and maps documents to `content/types.ts`. That file stays as the site's view model instead of being replaced by `payload-types.ts` (§8.3): components keep a narrow, validated shape and don't change when the dashboard schema does. Production shows published documents only; `pnpm dev` also shows drafts.
+- **Images:** Media uploads get a 10 px WebP blur preview on upload (stored on the document), so `next/image` keeps its blur-up. Locally files live in `media-uploads/`; with `BLOB_READ_WRITE_TOKEN` set, Vercel Blob serves them directly (`disablePayloadAccessControl`, media is public). Alt text "decorative" maps to an empty `alt`.
+- **Also editable (beyond §6):** homepage hero image and its callouts, and the Approach heading.
+- **Rendering:** pages are prerendered at build (which therefore needs the database) and revalidated by `afterChange`/`afterDelete` hooks. `/work/[slug]` dropped `dynamicParams = false`; unknown slugs still 404 through `notFound()`.
+- **Search engines:** `/dashboard` and `/api` are disallowed in `robots.txt`, send `X-Robots-Tag: noindex, nofollow` and are not in the sitemap.
+- **Local database:** `pnpm db:dev` runs Postgres 17 from `embedded-postgres` on port 5433 (UTF-8; databases `portfolio` and `portfolio_test`). Development pushes schema changes automatically; production uses migrations in `migrations/`, applied by the Vercel build command (`pnpm payload migrate && pnpm build`).
+- **Seed:** `pnpm seed` imports `content/seed/` (the former typed content) and is idempotent. A small Node loader (`scripts/image-loader.mjs`) lets those files' image imports run outside Next.
+- **Tests:** Playwright seeds `portfolio_test`, builds and serves against it, so dashboard edits on the development database never break the suite. No credentials are involved (the tests only read public pages).
+- **`check:placeholders`** now lists Media documents with *placeholder* ticked.
+- **`package.json`** is `"type": "module"` (as in Payload's template), needed for the Payload CLI to load the TypeScript config.
+- **Variable names:** the config reads `DATABASE_URI` locally or `DATABASE_URL` (Neon's Vercel integration).
+- **Audit (2026-10-16):** pnpm overrides patch Payload's transitive `undici` (7.30.0) and `dompurify` (3.4.16). Two advisories remain, neither reachable at runtime: `esbuild` ≤ 0.24.2 inside `drizzle-kit` (affects esbuild's own dev server, which isn't used) and `braces` 3.0.3 in Sass's file watcher (no patched release published yet). Recheck before launch.

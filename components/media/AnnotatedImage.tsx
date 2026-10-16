@@ -1,5 +1,6 @@
 "use client";
 
+import { blur } from "@/lib/image";
 import Image from "next/image";
 import { useRef } from "react";
 import type { Annotation, ImageAsset } from "@/content/types";
@@ -56,7 +57,7 @@ export function AnnotatedImage({
         <Image
           src={image.src}
           alt={image.alt}
-          placeholder="blur"
+          placeholder={blur(image.src)}
           sizes={sizes}
           className="block h-auto w-full"
         />

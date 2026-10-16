@@ -1,3 +1,4 @@
+import { blur } from "@/lib/image";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +24,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <Image
               src={project.cardImage.src}
               alt={project.cardImage.alt}
-              placeholder="blur"
+              placeholder={blur(project.cardImage.src)}
               sizes="(min-width: 64rem) 58vw, 100vw"
               className="size-full object-cover transition-transform duration-600 ease-standard group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
             />

@@ -1,5 +1,6 @@
 "use client";
 
+import { blur } from "@/lib/image";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
@@ -269,7 +270,7 @@ export function ProcessGrid({
                 <Image
                   src={tile.src}
                   alt=""
-                  placeholder="blur"
+                  placeholder={blur(tile.src)}
                   sizes="(min-width: 64rem) 34vw, 60vw"
                   className="size-full object-cover"
                 />

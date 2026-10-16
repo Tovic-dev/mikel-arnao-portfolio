@@ -46,6 +46,12 @@ Statuses: `OPEN` · `RECOMMENDED` (awaiting approval) · `APPROVED` · `REJECTED
 | D-42 | **Lab page** built as specified (contact sheet, Type filter, lightbox with `?entry=`); first real entry "Building this portfolio", the rest placeholders. **Caira and PBL02 not added yet** (Mikel). About's interests moved to the Lab | 2026-10-16 |
 | D-33 | **Lenis smooth scroll** chosen (Checkpoint A): on by default with mouse/trackpad, native on touch and with reduced motion. Review panel and native/Lenis switch removed; `?motion=on` kept until launch | 2026-10-16 |
 | D-37 | Checkpoint A feedback: no about section on the homepage (About page only); "Featured projects" wording (more projects exist); smoother hero→grid curtain as in the reference; grid holds then is covered by featured projects (second curtain); compact footer | 2026-10-16 |
+| D-43 | CMS database: **Neon Postgres via the Vercel Marketplace**; local development and tests use an embedded Postgres (no account) | 2026-10-16 |
+| D-44 | CMS at **`/dashboard`** (Payload 3.90.2) | 2026-10-16 |
+| D-45 | Password reset by email: **Resend later**; v1 resets through another admin | 2026-10-16 |
+| D-46 | Live preview of drafts: if time allows, otherwise right after v1 | 2026-10-16 |
+| D-47 | **Build the CMS now**, before real content (8.3), so content goes in through the dashboard | 2026-10-16 |
+| D-48 | CMS build choices (`16` §11): `content/types.ts` kept as the site's view model with a mapping layer, so components don't depend on the CMS schema; homepage hero image and callouts editable; tests run on a separate seeded database | 2026-10-16 |
 
 ## Open
 

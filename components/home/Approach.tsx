@@ -4,34 +4,12 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RevealHeading } from "@/components/motion/RevealHeading";
 
 // Approach (05 A4): each step points to the case-study section that proves it.
-const steps: { title: string; text: string; proof: string; href: string }[] = [
-  {
-    title: "Understand",
-    text: "Research the product, its users, its market and the regulations it has to meet.",
-    proof: "Regulatory analysis, SEAT mirror",
-    href: "/work/seat-ateca-mirror#research",
-  },
-  {
-    title: "Explore",
-    text: "Sketch widely, then narrow down to the concept that answers the brief best.",
-    proof: "Ideation sketches, Orbea rack",
-    href: "/work/orbea-cycle-dry#concepts",
-  },
-  {
-    title: "Develop",
-    text: "Turn the concept into something buildable: CAD, mechanisms, circuits and materials.",
-    proof: "Development and CAD, Ardura",
-    href: "/work/ardura#development",
-  },
-  {
-    title: "Specify and present",
-    text: "Fix materials, manufacturing and environmental impact, then present the result.",
-    proof: "Life-cycle assessment, Mercedes vent",
-    href: "/work/mercedes-vent-lca#evaluation",
-  },
-];
+interface ApproachProps {
+  title: string;
+  steps: { title: string; text: string; proof: string; href: string }[];
+}
 
-export function Approach() {
+export function Approach({ title, steps }: ApproachProps) {
   return (
     <section aria-labelledby="approach-title" className="relative z-1 bg-paper">
       <div className="container-page border-t border-rule py-(--section-space)">
@@ -40,7 +18,7 @@ export function Approach() {
           id="approach-title"
           className="mt-6 max-w-[22ch] text-h2"
         >
-          How I take a product from idea to specification
+          {title}
         </RevealHeading>
         <ol className="mt-16 grid gap-10 sm:grid-cols-2 sm:gap-x-(--grid-gutter) lg:grid-cols-4">
           {steps.map((step, i) => (

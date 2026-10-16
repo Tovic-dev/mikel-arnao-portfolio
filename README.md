@@ -3,16 +3,18 @@
 Personal portfolio of Mikel Arnao, Product Designer & Design Engineer.
 Live: https://mikel-arnao-portfolio.vercel.app
 
-Next.js 16 (App Router, fully static) · TypeScript · Tailwind CSS v4 · GSAP · Lenis · Vercel.
+Next.js 16 (App Router) · Payload CMS 3 at `/dashboard` · Postgres · TypeScript · Tailwind CSS v4 · GSAP · Lenis · Vercel.
 All planning and decisions live in [`docs/portfolio/`](docs/portfolio/) — start with [`00-project-brief.md`](docs/portfolio/00-project-brief.md).
 
 ## Run it
 
-Requires Node 20.9+ (developed on 24) and pnpm.
+Requires Node 20.9+ (developed on 24) and pnpm. Copy `.env.example` to `.env.local` and set a long random `PAYLOAD_SECRET`. The local database needs no account or install (embedded Postgres in `.embedded-pg/`, git-ignored; `pnpm db:dev --reset` wipes it).
 
 ```bash
 pnpm install
-pnpm dev            # http://localhost:3000
+pnpm db:dev         # local Postgres on port 5433; keep this terminal open
+pnpm seed           # first time only: imports content/seed/ into the database
+pnpm dev            # http://localhost:3000, dashboard at /dashboard
 pnpm build          # production build (must pass before every push)
 pnpm start          # serve the production build
 ```
@@ -23,8 +25,8 @@ Quality checks:
 pnpm typecheck      # TypeScript (strict)
 pnpm lint           # ESLint
 pnpm format:check   # Prettier
-pnpm test:a11y      # axe + smoke tests on every route (uses installed Chrome)
-pnpm check:placeholders   # lists stand-in images still in use
+pnpm test:a11y      # axe + smoke tests on every route (needs db:dev; seeds and builds against a separate test database)
+pnpm check:placeholders   # lists Media marked as placeholder in the CMS
 ```
 
 ### Reduced motion
@@ -33,16 +35,15 @@ If your OS has reduced motion turned on (on Windows: Settings → Accessibility 
 
 ## Content
 
-Each project is one typed file in `content/projects/` (data model: `content/types.ts`). Site-wide facts are in `content/site.ts`. Every claim must trace to `docs/portfolio/09-content-and-assets.md` or the decision log `13-open-decisions.md`.
+All content is edited in the CMS at `/dashboard` (Payload; spec in [`16-cms-specification.md`](docs/portfolio/16-cms-specification.md)). Every claim must still trace to `docs/portfolio/09-content-and-assets.md` or the decision log `13-open-decisions.md`.
 
-### Add or edit a project
+- **Projects:** case studies (sections built from media blocks) and short entries. Save as draft, publish when ready; only published projects reach the site. Pages update within seconds of publishing.
+- **Lab entries**, **Media** (every image needs alt text; tick _placeholder_ for stand-ins), and the **Site**, **Homepage**, **About** and **Lab page** globals for the remaining text.
+- **First login:** on a new database, `/dashboard` asks you to create the first user. There is no public sign-up; further users can only be added by a logged-in admin. Forgotten password: another admin resets it (email reset comes later).
 
-1. Copy an existing file in `content/projects/` and rename it (the filename doesn't matter; `slug` does).
-2. Fill in every field. TypeScript fails the build if required fields are missing: `hero`, `cardImage`, `processTiles`, `myRole`, `summary` (≤ 160 characters), image `alt` text.
-3. Register it in `content/index.ts` and set `order`.
-4. `pnpm build`, check it locally, push.
+The site reads content through `content/index.ts`, which maps Payload documents to the types in `content/types.ts`. After changing a collection or global in `cms/`, run `pnpm generate:types` and create a migration (`pnpm payload migrate:create <name>`) before deploying.
 
-The homepage, case-study page, sitemap and navigation pick it up automatically.
+`content/seed/` holds the original typed content that `pnpm seed` imports. It is kept until the production database has been seeded and checked.
 
 ### Replace placeholder images
 
@@ -52,11 +53,20 @@ Originals stay in `projects info/` (never committed). Export web versions:
 pnpm images:export "projects info/ardura" ardura
 ```
 
-This writes `content/media/ardura/*.jpg` (max 2560 px, sRGB, ~85 quality). Then import them in the project file in place of `placeholders.*`, remove `placeholder: true`, and write proper `alt` text. `pnpm check:placeholders` shows what's left; launch requires none (`LAUNCH=1 pnpm check:placeholders` fails if any remain).
+This writes `content/media/ardura/*.jpg` (max 2560 px, sRGB, ~85 quality). Upload them in `/dashboard` → Media with proper `alt` text, swap them into the project, and delete or untick the placeholder. Launch requires none left (`LAUNCH=1 pnpm check:placeholders` fails if any remain).
 
 ## Deploy
 
-`main` deploys to production on Vercel automatically; every other branch gets a preview URL. The only environment variable is `SITE_URL` (absolute production URL, used for canonical links, sitemap and Open Graph).
+`main` deploys to production on Vercel automatically; every other branch gets a preview URL. The build runs database migrations first (`vercel.json`).
+
+Environment variables (Vercel → Settings → Environment Variables):
+
+| Variable                | Source                                                                      |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `SITE_URL`              | Absolute production URL (canonical links, sitemap, Open Graph, CMS cookies) |
+| `DATABASE_URL`          | Set automatically by the Neon integration (Vercel Marketplace)              |
+| `BLOB_READ_WRITE_TOKEN` | Set automatically when a Vercel Blob store is connected                     |
+| `PAYLOAD_SECRET`        | A long random value you generate; never reuse the local one                 |
 
 Before pushing to `main`: `pnpm build && pnpm lint && pnpm test:a11y`, and `pnpm audit` for dependency advisories.
 

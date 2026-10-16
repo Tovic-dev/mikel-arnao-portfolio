@@ -43,3 +43,8 @@ desktop.ini
 # Playwright
 /test-results/
 /playwright-report/
+
+# Payload
+/media-uploads/
+/.embedded-pg/
+payload-types.ts.bak
