@@ -1,4 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm payload migrate && pnpm build"
+  "buildCommand": "pnpm payload migrate && pnpm build",
+  "regions": [
+    "lhr1"
+  ]
 }
