@@ -1,6 +1,10 @@
 allowBuilds:
   # Restores symlinks for the bundled Postgres binaries (local dev/test DB only).
   "@embedded-postgres/windows-x64": true
+  # Other platforms' binaries (e.g. on Vercel) aren't used: skip their scripts.
+  "@embedded-postgres/linux-x64": false
+  "@embedded-postgres/darwin-arm64": false
+  "@embedded-postgres/darwin-x64": false
   # Verifies esbuild's platform binary (used by Payload's tooling).
   esbuild: true
   sharp: false
