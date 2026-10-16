@@ -2,8 +2,11 @@
 // (docs/portfolio/16 §8). Safe to re-run: documents are matched by slug, entry
 // id and image file, and updated instead of duplicated.
 //
-//   pnpm seed                        local database (.env.local)
-//   DATABASE_URI=… pnpm seed         another database, e.g. production once
+//   pnpm seed                 local database (.env.local)
+//   SEED_IF_EMPTY=1 pnpm seed  only if the Site global was never filled in. The
+//                             Vercel build runs this, so a new production
+//                             database gets the content once and is never
+//                             overwritten afterwards (vercel.json).
 import { register } from "node:module";
 import path from "node:path";
 import config from "@payload-config";
@@ -34,6 +37,15 @@ const projects: Project[] = await Promise.all(
 
 const payload = await getPayload({ config });
 const log = (msg: string) => payload.logger.info(`seed: ${msg}`);
+
+// An environment variable, not a flag: `payload run` drops unknown flags.
+if (process.env.SEED_IF_EMPTY === "1") {
+  const existing = await payload.findGlobal({ slug: "site", depth: 0 });
+  if (existing.name) {
+    log("database already has content, skipping");
+    process.exit(0);
+  }
+}
 
 // Images: one Media document per file + alt text.
 const uploaded = new Map<string, number>();

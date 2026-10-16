@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm payload migrate && pnpm build",
+  "buildCommand": "pnpm payload migrate && PAYLOAD_DB_PUSH=false SEED_IF_EMPTY=1 pnpm seed && pnpm build",
   "regions": [
     "lhr1"
   ]

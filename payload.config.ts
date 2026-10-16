@@ -41,6 +41,10 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI ?? process.env.DATABASE_URL,
     },
     migrationDir: path.resolve(dirname, "migrations"),
+    // Development pushes schema changes directly. Scripts that touch the
+    // production database (the build's seed step) set PAYLOAD_DB_PUSH=false,
+    // so its schema only ever changes through migrations.
+    push: process.env.PAYLOAD_DB_PUSH !== "false",
   }),
   plugins: [
     vercelBlobStorage({
