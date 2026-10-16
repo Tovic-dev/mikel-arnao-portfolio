@@ -61,12 +61,12 @@ This writes `content/media/ardura/*.jpg` (max 2560 px, sRGB, ~85 quality). Uploa
 
 Environment variables (Vercel → Settings → Environment Variables):
 
-| Variable                | Source                                                                      |
-| ----------------------- | --------------------------------------------------------------------------- |
-| `SITE_URL`              | Absolute production URL (canonical links, sitemap, Open Graph, CMS cookies) |
-| `DATABASE_URL`          | Set automatically by the Neon integration (Vercel Marketplace)              |
-| `BLOB_READ_WRITE_TOKEN` | Set automatically when a Vercel Blob store is connected                     |
-| `PAYLOAD_SECRET`        | A long random value you generate; never reuse the local one                 |
+| Variable                | Source                                                                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `SITE_URL`              | Absolute production URL (canonical links, sitemap, Open Graph, CMS cookies)                                                                                  |
+| `DATABASE_URL`          | Set automatically by the Neon integration (Vercel Marketplace)                                                                                               |
+| `BLOB_READ_WRITE_TOKEN` | Set automatically when a Vercel Blob store is connected. The store must be **Public**: Payload cannot use private stores, and access cannot be changed later |
+| `PAYLOAD_SECRET`        | A long random value you generate; never reuse the local one                                                                                                  |
 
 Before pushing to `main`: `pnpm build && pnpm lint && pnpm test:a11y`, and `pnpm audit` for dependency advisories.
 
