@@ -45,7 +45,20 @@ export function CopyEmailButton({
         }
       >
         <Icon aria-hidden="true" className="size-4" strokeWidth={1.5} />
-        {status === "copied" ? "Copied" : "Copy email"}
+        {/* Both labels share one cell so the button keeps the width of the
+            longer one and the header doesn't shift. */}
+        <span className="grid">
+          <span
+            className={`[grid-area:1/1] ${status === "copied" ? "invisible" : ""}`}
+          >
+            Copy email
+          </span>
+          <span
+            className={`[grid-area:1/1] ${status === "copied" ? "" : "invisible"}`}
+          >
+            Copied
+          </span>
+        </span>
       </button>
       <span role="status" aria-live="polite" className="sr-only">
         {status === "copied" && "Email address copied to clipboard"}

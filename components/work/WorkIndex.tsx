@@ -361,12 +361,18 @@ export function WorkIndex({ items }: { items: WorkItem[] }) {
         </div>
       </div>
 
-      <div ref={list} className="mt-6">
+      {/* "No." column: room for the 64px thumbnail, which stays visible on
+          desktop unless the hover preview replaces it (fine pointer + motion).
+          With the thumbnail, rows centre on it instead of the text baseline. */}
+      <div
+        ref={list}
+        className="mt-6 [--no-col:8.5rem] [--row-align:center] pointer-fine:motion-safe:[--no-col:4.5rem] pointer-fine:motion-safe:[--row-align:baseline]"
+      >
         {view === "list" ? (
           <>
             <div
               aria-hidden="true"
-              className="hidden grid-cols-[4.5rem_minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_4rem_1.5rem] gap-4 border-b border-rule-strong pb-2 label text-ink-3 lg:grid"
+              className="hidden grid-cols-[var(--no-col)_minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_4rem_1.5rem] gap-4 border-b border-rule-strong pb-2 label text-ink-3 lg:grid"
             >
               <span>No.</span>
               <span>Project</span>
@@ -386,9 +392,9 @@ export function WorkIndex({ items }: { items: WorkItem[] }) {
                 >
                   <Link
                     href={`/work/${i.slug}` as Route}
-                    className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 py-4 transition-colors duration-(--dur-base) ease-standard hover:bg-raised lg:grid-cols-[4.5rem_minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_4rem_1.5rem] lg:items-baseline"
+                    className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 py-4 transition-colors duration-(--dur-base) ease-standard hover:bg-raised lg:grid-cols-[var(--no-col)_minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_4rem_1.5rem] lg:[align-items:var(--row-align)]"
                   >
-                    <span className="flex items-center gap-3 lg:items-baseline">
+                    <span className="flex items-center gap-3 lg:[align-items:var(--row-align)]">
                       <span className="relative size-16 shrink-0 overflow-hidden bg-raised lg:pointer-fine:motion-safe:hidden">
                         <Image
                           src={i.image.src}
