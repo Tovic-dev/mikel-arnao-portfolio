@@ -50,6 +50,9 @@ export default buildConfig({
     vercelBlobStorage({
       // Only on Vercel (token present); locally uploads stay in /media-uploads.
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      // Same Media columns with or without the token, so migrations made
+      // locally match production.
+      alwaysInsertFields: true,
       // Media is public: serve files straight from Blob's CDN, not through /api.
       collections: { media: { disablePayloadAccessControl: true } },
       token: process.env.BLOB_READ_WRITE_TOKEN,
